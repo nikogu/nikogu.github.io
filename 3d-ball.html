@@ -1,0 +1,175 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+html, body {
+	background-color: #000000;
+	padding: 0;
+	margin: 0;
+}
+#canvas {
+	background-color: #000000;
+	cursor: pointer;
+	margin: 0 auto;
+	height: 600px;
+	width: 1000px;
+}
+</style>
+<canvas id="canvas" width="1000" height="600"></canvas>
+<script type="text/javascript" src="./lib/utils.js"></script>
+<script type="text/javascript" src="./lib/3d-point.js"></script>
+<script type="text/javascript" src="./lib/3d-graph.js"></script>
+<script type="text/javascript">
+	console.log('模拟3D球体');
+	console.log('其中要点如下');
+	console.debug('1.通过点来连接面');
+	console.debug('2.每个平面的多边形都有三角形构成，因为无论三个点在空间的方位如何，都在一个面');
+	console.debug('3.按照经度和维度的原理，从上至下，从左至右讲圆的点绘出');
+	console.debug('4.将画出的点配对三角形进行绘画，从而构成球体');
+	console.debug('5.旋转和缩放都是建立在点的基础上的，无非就是按照x,y,z轴旋转, 缩放就是改变视口的距离，根据scale属性模拟视口');
+	console.debug('6.阴影面不绘是根据三角形的法线向量确定是在背面还是在正面的');
+	console.debug('7.需要在z轴（模拟的）进行排序，因为3D是有前后的，需要覆盖');
+	console.warn('吼吼，是不是还是有点意思=。-');
+
+</script>
+<script type="text/javascript">
+	var canvas = document.getElementById('canvas'),
+		ctx = canvas.getContext('2d');
+
+	if ( !ctx ) {
+		alert('using the fucking chrome');
+	}
+
+	var mouse = utils.captureMouse(canvas);
+
+	var vpX = canvas.width/2,
+		vpY = canvas.height/2,
+		angleX = 0,
+		angleY = 0,
+		viewZ = 0;
+
+	var numFaces = 200;
+
+	var pointNum = 24,
+		r = 100;
+
+	var faces = [];
+
+	function buildLatitude(face, r, y, pointNum) {
+		var latitude = 0,
+			plusDeg = (360 / pointNum) * Math.PI / 180;
+		for ( var i=0; i<pointNum; i++ ) {
+			if ( r == 0 ) {
+				face.addPoint(0, y, 0);
+			} else {
+				face.addPoint(r*Math.cos(latitude), y, r*Math.sin(latitude));
+			}
+			latitude += plusDeg;
+		}
+	}
+	function buildBall(r, pointNum) {
+		var ball = new Graph(vpX, vpY, '#33ff11');
+		ball.alpha = 0.8;
+		var longitude = 0,
+			plusDeg = (180 / pointNum) * Math.PI / 180;
+		for ( var i=0; i<pointNum+1; i++ ) {
+			buildLatitude(ball, r*Math.sin(longitude), r*Math.cos(longitude), pointNum);
+			longitude += plusDeg;
+		}
+		var cur = 0,
+			next = 0;
+		for ( var j=0; j<pointNum; j++ ) {
+			if ( j == 0 ) {
+				for ( var k=0; k<pointNum; k++ ) {
+					cur = j;
+					next = pointNum+k;
+					if ( k == pointNum-1 ) {
+						ball.addTriangle(cur, pointNum, next);	
+					} else {
+						ball.addTriangle(cur, next+1, next);	
+					}
+				}
+			} else if ( j == pointNum-1 ) {		
+				for ( var k=0; k<pointNum; k++ ) {
+					cur = j*pointNum+k;
+					next = j*pointNum+pointNum;
+					if ( k == pointNum-1 ) {
+						ball.addTriangle(cur, j*pointNum, next);	
+					} else {
+						ball.addTriangle(cur, cur+1, next);	
+					}
+				}	
+			} else {
+				for ( var k=0; k<pointNum; k++ ) {
+					cur = j*pointNum+k;
+					next = cur+pointNum;
+					if ( k == pointNum-1 ) {
+						ball.addTriangle(cur, j*pointNum, next);	
+						ball.addTriangle(next, j*pointNum, (j+1)*pointNum);	
+					} else {
+						ball.addTriangle(cur, cur+1, next);	
+						ball.addTriangle(next, cur+1, next+1);	
+					}
+				}
+			}
+			
+		}
+		return ball;
+	}
+	var ball = buildBall(r, pointNum);
+
+	//交互
+	var isPress = false;
+
+	var angle = 0;
+	var oldX = vpX;
+
+	var angle2 = 0;
+	var oldY = vpY;
+	window.addEventListener('mousewheel', function(e) {
+		if ( e.wheelDelta > 0 ) {
+			viewZ += 10;
+		} else {
+			viewZ -= 10;
+		}
+	}, false);
+	window.addEventListener('mousedown', function() {
+		isPress = true;
+
+	}, false);
+	window.addEventListener('mousemove', function() {
+		if ( isPress ) {
+			angle += (mouse.x - oldX) / vpX * 180;
+			if ( angle > 360 ) {
+				angle = 0;
+			}
+			if ( angle < 0 ) {
+				angle = 360;
+			}
+			angleY = angle * Math.PI/180;
+
+			angle2 += (mouse.y - oldY) / vpY * 180;
+			if ( angle2 > 360 ) {
+				angle2 = 0;
+			}
+			if ( angle2 < 0 ) {
+				angle2 = 360;
+			}
+			angleX = angle2 * Math.PI/180;
+		}
+		oldX = mouse.x;
+		oldY = mouse.y;
+	}, false);
+	window.addEventListener('mouseup', function() {
+		isPress = false;
+	}, false);
+
+	(function drawFrame(){
+		window.requestAnimationFrame(drawFrame, canvas);	
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ball.setCenter(0, 0, viewZ);
+		ball.rotate(angleY, angleX);
+		ball.drawT(ctx);
+
+	})();
+
+</script>
