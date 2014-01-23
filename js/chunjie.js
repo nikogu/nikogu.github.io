@@ -8,6 +8,7 @@
 function randomColor() {
 	var c = 'rgb(';
 	c += utils.random(100, 255) + ',' + utils.random(100, 255) + ',' + utils.random(100, 255) + ')';
+	c = 'rgb(247,244,81)';
 	return c;
 }
 
@@ -17,7 +18,7 @@ function drawText(ctx, config) {
 		font = config.font || '900 300px simsun',
 		gap = config.gap || 10,
 		textLen = text.length,
-		size = font.match(/([\d]+)px/ig)[0] * 1 || 200;
+		size = parseInt(font.match(/([\d]+)px/ig)[0]) || 200;
 
 	//绘画黑底白字，用于获取字的坐标
 	ctx.save();
@@ -106,18 +107,18 @@ function checkBound(ball, bounce) {
 	var canvas = document.getElementById('canvas'),
 		ctx = canvas.getContext('2d');
 
-	if ( !ctx ) {
+	if (!ctx) {
 		alert('using the fucking chrome');
 	}
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 
 	canvas.style.display = 'block';
-	
+
 	var pos = drawText(ctx, {
 		text: '春节快乐',
-		font: '900 200px simsun',
-		gap: 8
+		font: '900 300px simsun',
+		gap: 10
 	});
 
 	//构建视图
@@ -138,7 +139,8 @@ function checkBound(ball, bounce) {
 	//构建球
 	var balls = [];
 	pos.forEach(function(p) {
-		var ball = new Ball(5, randomColor());
+		var ball = new Ball(10, randomColor());
+		ball.lineWidth = 0;
 		ball.x = utils.random(10, canvas.width - 10);
 		ball.y = utils.random(10, canvas.height - 10);
 		ball.targetX = p.x;
