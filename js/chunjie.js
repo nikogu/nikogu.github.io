@@ -106,8 +106,13 @@ function checkBound(ball, bounce) {
 	var canvas = document.getElementById('canvas'),
 		ctx = canvas.getContext('2d');
 
+	if ( !ctx ) {
+		alert('using the fucking chrome');
+	}
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
+
+	canvas.style.display = 'block';
 	
 	var pos = drawText(ctx, {
 		text: '春节快乐',
