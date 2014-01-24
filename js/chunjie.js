@@ -7,7 +7,7 @@
  */
 function randomColor() {
 	var c = 'rgb(';
-	c += utils.random(100, 255) + ',' + utils.random(100, 255) + ',' + utils.random(100, 255) + ')';
+	c += utils.random(0, 255) + ',' + utils.random(0, 255) + ',' + utils.random(0, 255) + ')';
 	c = 'rgb(247,244,81)';
 	return c;
 }
@@ -129,7 +129,7 @@ function checkBound(ball, bounce) {
 		floor = 200,
 		gravity = 0.2,
 		bounce = -0.6,
-		spring = 0.005,
+		spring = 0.2,
 		friction = 0.9;
 
 	var isFall = false,
@@ -210,12 +210,12 @@ function checkBound(ball, bounce) {
 			dy = ball.targetY - ball.y;
 			deg = Math.atan2(dy, dx);
 			dis = Math.sqrt(dx * dx + dy * dy);
-			ball.ax = dis * spring * Math.cos(deg);
-			ball.ay = dis * spring * Math.sin(deg);
-			ball.vx += ball.ax;
-			ball.vy += ball.ay;
-			ball.vx *= friction;
-			ball.vy *= friction;
+			ball.vx = dis * spring * Math.cos(deg);
+			ball.vy = dis * spring * Math.sin(deg);
+			//ball.vx += ball.ax;
+			//ball.vy += ball.ay;
+			//ball.vx *= friction;
+			//ball.vy *= friction;
 			ball.x += ball.vx;
 			ball.y += ball.vy;
 			ball.visible = true;
