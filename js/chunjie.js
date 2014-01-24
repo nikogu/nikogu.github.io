@@ -7,8 +7,8 @@
  */
 function randomColor() {
 	var c = 'rgb(';
-	c += utils.random(0, 255) + ',' + utils.random(0, 255) + ',' + utils.random(0, 255) + ')';
-	c = 'rgb(247,244,81)';
+	//c += utils.random(50, 200) + ',' + utils.random(50, 200) + ',' + utils.random(50, 200) + ')';
+	c = '#ff6600';
 	return c;
 }
 
@@ -116,7 +116,7 @@ function checkBound(ball, bounce) {
 	canvas.style.display = 'block';
 
 	var pos = drawText(ctx, {
-		text: '春节快乐',
+		text: '马上有钱',
 		font: '900 300px simsun',
 		gap: 10
 	});
