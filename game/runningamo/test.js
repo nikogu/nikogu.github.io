@@ -116,6 +116,9 @@
 	//初始化
 	function create() {
 
+		//remove loading
+		document.getElementById('loading').style.display = 'none';
+
 		blurX = game.add.filter('BlurX');
 		blurY = game.add.filter('BlurY');
 		game.canvas.style.cursor = 'pointer';
