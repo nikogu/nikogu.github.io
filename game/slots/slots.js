@@ -6,6 +6,9 @@
  * @data 2014-03-08
  */
 
+//++++++++++++++++++++++++++++++++++++
+// google font load
+//++++++++++++++++++++++++++++++++++++
 WebFont.load({
 	google: {
 		families: ['Revalia']
@@ -21,6 +24,9 @@ WebFont.load({
 	}
 });
 
+//++++++++++++++++++++++++++++++++++++
+// load img
+//++++++++++++++++++++++++++++++++++++
 function loadFunc() {
 	manifest = [{
 		src: "res/yellow1.png",
@@ -47,6 +53,10 @@ function loadFunc() {
 	loader.loadManifest(manifest);
 }
 
+
+//++++++++++++++++++++++++++++++++++++
+// 工具函数
+//++++++++++++++++++++++++++++++++++++
 function colorToRGB(_color, a) {
 	var color = _color.replace('#', '');
 	var r = parseInt(color.slice(0, 2), 16),
@@ -57,16 +67,21 @@ function colorToRGB(_color, a) {
 	return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
 }
 
+//随机数
 function random(min, max) {
 	return Math.floor(Math.random()*(max+1-min))+min;
 }
 
+//绑定上下文
 function bind(fn, context) {
 	return function() {
 		fn.apply(context, arguments);
 	}
 }
 
+//++++++++++++++++++++++++++++++++++++
+// 圆形按钮
+//++++++++++++++++++++++++++++++++++++
 function CircleButton(conf) {
 	this.initialize(conf);
 }
@@ -145,7 +160,9 @@ CircleButton.prototype.resetSD = function() {
 	this.background.shadow = this.oshadow;
 }
 
-//创建box
+//++++++++++++++++++++++++++++++++++++
+// 创建老虎机的窗口
+//++++++++++++++++++++++++++++++++++++
 function createBox(x, y, dir) {
 	var box = new createjs.Shape();
 	var width = 60,
@@ -167,7 +184,10 @@ function createBox(x, y, dir) {
 	box.y = y || 0;
 	return box;
 }
-//创建女孩
+
+//++++++++++++++++++++++++++++++++++++
+// 创建老虎机的元素
+//++++++++++++++++++++++++++++++++++++
 function createPic(img, x, y, index) {
 	var pic = new createjs.Bitmap(img);
 	pic.x = x || 45;
@@ -179,6 +199,9 @@ function createPic(img, x, y, index) {
 	return pic;
 }
 
+//++++++++++++++++++++++++++++++++++++
+// 创建老虎机的元素列表
+//++++++++++++++++++++++++++++++++++++
 function PicList(imgs, x) {
 	this.imgs = imgs || [];
 	this.pics = [];
@@ -307,11 +330,17 @@ PicList.prototype.stop = function() {
 	this.callback();
 }
 
+//++++++++++++++++++++++++++++++++++++
+// 程序入口
+//++++++++++++++++++++++++++++++++++++
 function init() {
+
+	document.getElementById('loading').style.display = 'none';
 
 	var viewPortWidth = 300,
 		viewPortHeight = 300;
 
+	//创建舞台
 	var stage = new createjs.Stage('canvas');
 	stage.enableMouseOver(20);
 	createjs.Touch.enable(stage);
@@ -331,7 +360,7 @@ function init() {
 	var box3 = createBox(200, 100);
 	stage.addChild(box3);
 
-	//图片
+	//图片列表
 	var picList1 = new PicList([
 		loader.getResult('yellow0'),
 		loader.getResult('yellow1'),

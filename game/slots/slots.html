@@ -22,10 +22,27 @@
 		cursor: pointer;
 		margin: 0 auto;
 	}
+	.content {
+		width: 310px;
+		margin: 0 auto;
+	}
+	#loading {
+		background: url("http://gtms01.alicdn.com/tps/i1/T1oykcFidbXXXcAos.-13-5.gif") no-repeat center center;
+		display: block;
+		position: absolute;
+		left: 50%;
+		margin-left: -50px;
+		top: 100px;
+		width: 100px;
+		height: 100px;
+	}
 	</style>
 </head>
 <body>
-	<canvas id="canvas" width="300" height="300"></canvas>
+	<div class="content">
+		<canvas id="canvas" width="300" height="300"></canvas>
+	</div>
+	<div id="loading" data-author="niko"></div>
 	<script src="./easeljs-0.7.0.min.js"></script>
 	<script src="./preload.js"></script>
 	<script src="./webfont.js"></script>
