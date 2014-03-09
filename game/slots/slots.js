@@ -225,7 +225,6 @@ function PicList(imgs, x) {
 	this.leftTime = 0;
 	this.stopIndex = 0;
 	this.callback;
-	this.rs = {};
 	this.init();
 }
 PicList.prototype.init = function() {
@@ -240,32 +239,12 @@ PicList.prototype.render = function(stage) {
 	}, this));
 }
 PicList.prototype.easing = function(callback) {
-	if (this.leftTime < 1000) {
-		if (!this.rs.a) {
-			this.rs.a = 1;
-			this.setVY(16);
-		}
-	} else if (this.leftTime < 1500) {
-		if (!this.rs.b) {
-			this.rs.b = 1;
-			this.setVY(12);
-		}
-	} else if (this.leftTime < 2000) {
-		if (!this.rs.c) {
-			this.rs.c = 1;
-			this.setVY(8);
-		}
-	} else if (this.leftTime < 2500) {
-		if (!this.rs.d) {
-			this.rs.d = 1;
-			this.setVY(4);
-		}
-	} else if (this.leftTime > 3000) {
-		if (!this.rs.e) {
-			this.rs.e = 1;
-			this.setVY(1);
-			callback();
-		}
+
+	this.vy = Math.ceil(Math.abs(this.leftTime-2000)*0.01);
+	if (this.leftTime > 1900) {
+		this.needPause = false;
+		this.needStop = true;
+		this.vy = 1;
 	}
 }
 PicList.prototype.roll = function() {
@@ -276,10 +255,7 @@ PicList.prototype.roll = function() {
 
 	if (this.needPause) {
 		this.leftTime = new Date().getTime() - this.pauseTime;
-		this.easing(bind(function() {
-			this.needPause = false;
-			this.needStop = true;
-		}, this));
+		this.easing();
 	}
 
 	this.pics.forEach(bind(function(pic) {
@@ -312,7 +288,6 @@ PicList.prototype.active = function(vy) {
 	this.needPause = false;
 	this.needRool = true;
 	this.setVY((vy || 20));
-	this.rs = {};
 }
 PicList.prototype.pause = function(stopIndex, callback) {
 	if (this.needPause) {
