@@ -69,7 +69,7 @@ function colorToRGB(_color, a) {
 
 //随机数
 function random(min, max) {
-	return Math.floor(Math.random()*(max+1-min))+min;
+	return Math.floor(Math.random() * (max + 1 - min)) + min;
 }
 
 //绑定上下文
@@ -298,8 +298,8 @@ PicList.prototype.roll = function() {
 		//需要手动修改比例
 		if (pic.y > this.bound.top) {
 			var dis = Math.abs(pic.y - this.bound.center);
-			pic.alpha = (1 - dis / this.bound.height / 2);
-			pic.scaleY = (1 - dis / this.bound.height / 2) * 0.4 + 0.3;
+			pic.alpha = (1 - dis / (this.bound.height / 2)) * 0.3 + 0.7;
+			pic.scaleY = (1 - dis / (this.bound.height / 2)) * 0.3 + 0.4;
 		}
 
 	}, this));
@@ -407,12 +407,12 @@ function init() {
 	logo.text = '- SLOT -';
 	logo.textBaseline = 'top';
 	logo.textAlign = 'center';
-	logo.x = viewPortWidth/2;
+	logo.x = viewPortWidth / 2;
 	logo.y = 20;
 	stage.addChild(logo);
 
 	//开始按钮
-	var isCanClickStart = true;	
+	var isCanClickStart = true;
 	var isCanClickEnd = false;
 	var endBtn;
 	var startBtn = new CircleButton({
@@ -425,7 +425,7 @@ function init() {
 		strokeColor: '#333333',
 		font: '14px Revalia',
 		handleClick: function() {
-			if ( !isCanClickStart ) {
+			if (!isCanClickStart) {
 				return;
 			}
 			isCanClickStart = false;
@@ -453,7 +453,7 @@ function init() {
 		strokeColor: '#333333',
 		font: '14px Revalia',
 		handleClick: function() {
-			if ( !isCanClickEnd ) {
+			if (!isCanClickEnd) {
 				return;
 			}
 			isCanClickEnd = false;
