@@ -37,15 +37,6 @@ function loadFunc() {
 	}, {
 		src: "res/yellow3.png",
 		id: "yellow2"
-	}, {
-		src: "res/yellow4.png",
-		id: "yellow3"
-	}, {
-		src: "res/yellow5.png",
-		id: "yellow4"
-	}, {
-		src: "res/yellow6.png",
-		id: "yellow5"
 	}];
 
 	loader = new createjs.LoadQueue(false);
@@ -339,30 +330,21 @@ function init() {
 	var picList1 = new PicList([
 		loader.getResult('yellow0'),
 		loader.getResult('yellow1'),
-		loader.getResult('yellow2'),
-		loader.getResult('yellow3'),
-		loader.getResult('yellow4'),
-		loader.getResult('yellow5')
+		loader.getResult('yellow2')
 	], 45);
 	picList1.render(stage);
 
 	var picList2 = new PicList([
 		loader.getResult('yellow0'),
-		loader.getResult('yellow3'),
-		loader.getResult('yellow5'),
-		loader.getResult('yellow4'),
-		loader.getResult('yellow1'),
-		loader.getResult('yellow2')
+		loader.getResult('yellow2'),
+		loader.getResult('yellow1')
 	], 125);
 	picList2.render(stage);
 
 	var picList3 = new PicList([
 		loader.getResult('yellow0'),
-		loader.getResult('yellow5'),
-		loader.getResult('yellow2'),
-		loader.getResult('yellow3'),
-		loader.getResult('yellow4'),
-		loader.getResult('yellow1')
+		loader.getResult('yellow1'),
+		loader.getResult('yellow2')
 	], 205);
 	picList3.render(stage);
 
@@ -432,16 +414,16 @@ function init() {
 				return;
 			}
 			isCanClickEnd = false;
-			picList1.pause(random(0, 4), function() {
+			picList1.pause(random(0, 2), function() {
 				console.log('stop-1');
 			});
 			setTimeout(function() {
-				picList2.pause(random(0, 4), function() {
+				picList2.pause(random(0, 2), function() {
 					console.log('stop-2');
 				});
 			}, 500);
 			setTimeout(function() {
-				picList3.pause(random(0, 4), function() {
+				picList3.pause(random(0, 2), function() {
 					isCanClickStart = true;
 					startBtn.resetSD();
 					console.log('stop-3');
