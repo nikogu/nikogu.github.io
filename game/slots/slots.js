@@ -199,6 +199,7 @@ function PicList(imgs, x) {
 	this.x = x || 0;
 	this.y = 0;
 	this.vy = 20;
+	this._vy = 20;
 	this.height = 71;
 	//第一张图的初始起点，其它图一次向上堆积
 	this.beginPoint = 120;
@@ -206,7 +207,8 @@ function PicList(imgs, x) {
 		top: 50,
 		bottom: 190,
 		center: 125,
-		height: 140
+		height: 140,
+		minHeight: 75
 	};
 	this.len = this.imgs.length;
 	this.needStop = false;
@@ -216,10 +218,13 @@ function PicList(imgs, x) {
 	this.leftTime = 0;
 	this.stopIndex = 0;
 	this.callback;
+	this.resetTop = 0;
+	this.dis = 0;
 	this.init();
 }
 PicList.prototype.init = function() {
 	this.y = this.beginPoint - this.len * this.height;
+	this.resetTop = this.beginPoint - (this.len - 1) * this.height - this.bound.bottom;
 	this.imgs.forEach(bind(function(img, index) {
 		this.pics.push(createPic(img, this.x, this.beginPoint - index * this.height, index));
 	}, this));
@@ -230,9 +235,8 @@ PicList.prototype.render = function(stage) {
 	}, this));
 }
 PicList.prototype.easing = function(callback) {
-
-	this.vy = Math.ceil(Math.abs(this.leftTime-2000)*0.01);
-	if (this.leftTime > 1900) {
+	this.vy -= 1;
+	if ( this.vy < 1 ) {
 		this.needPause = false;
 		this.needStop = true;
 		this.vy = 1;
@@ -245,7 +249,6 @@ PicList.prototype.roll = function() {
 	}
 
 	if (this.needPause) {
-		this.leftTime = new Date().getTime() - this.pauseTime;
 		this.easing();
 	}
 
@@ -258,15 +261,14 @@ PicList.prototype.roll = function() {
 				this.stop();
 			}
 		}
-
 		if (pic.y >= this.bound.bottom) {
-			pic.y = this.beginPoint - (this.len - 1) * this.height + (pic.y - this.bound.bottom);
+			pic.y += this.resetTop;
 		}
 		//需要手动修改比例
 		if (pic.y > this.bound.top) {
-			var dis = Math.abs(pic.y - this.bound.center);
-			pic.alpha = (1 - dis / (this.bound.height / 2)) * 0.3 + 0.7;
-			pic.scaleY = (1 - dis / (this.bound.height / 2)) * 0.3 + 0.4;
+			this.dis = Math.abs(pic.y - this.bound.center);
+			pic.alpha = (1 - this.dis / this.bound.minHeight) * 0.3 + 0.7;
+			pic.scaleY = (1 - this.dis / this.bound.minHeight) * 0.3 + 0.4;
 		}
 
 	}, this));
@@ -278,7 +280,7 @@ PicList.prototype.active = function(vy) {
 	this.needStop = false;
 	this.needPause = false;
 	this.needRool = true;
-	this.setVY((vy || 20));
+	this.setVY(this._vy);
 }
 PicList.prototype.pause = function(stopIndex, callback) {
 	if (this.needPause) {
