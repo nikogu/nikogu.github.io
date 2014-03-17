@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="twcClient" content="false" id="twcClient">
+	<title>LINK</title>
+	<style type="text/css">
+	@font-face {
+  		font-family: 'Revalia';
+  		font-style: normal;
+  		font-weight: 400;
+  		src: local('Revalia-Regular'), url('./res/font.woff') format('woff');
+	}
+	h1, canvas {
+		font-family: 'Revalia';
+		border: 5px solid #dddddd;
+		cursor: pointer;
+		margin: 0 auto;
+	}
+	.content {
+		position: relative;
+		margin: 0 auto;
+		width: 510px;
+	}
+	#loading {
+		background: url("http://gtms01.alicdn.com/tps/i1/T1oykcFidbXXXcAos.-13-5.gif") no-repeat center center;
+		display: block;
+		position: absolute;
+		left: 50%;
+		margin-left: -50px;
+		top: 100px;
+		width: 100px;
+		height: 100px;
+	}
+	p {
+		display: block;
+		font-family: 'Revalia';
+		font-size: 20px;
+		font-weight: bold;
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+	}
+	#scroe {
+		color: #ff2e12;	
+		font-size: 25px;
+	}
+	#btn-restart {
+		background-color: #1faeff;
+		color: #ffffff;
+		padding: 4px 9px;
+		position: absolute;
+		top: 5px;
+		right: 0;
+		font-family: 'Revalia';
+		font-size: 14px;
+		font-weight: bold;
+		text-decoration: none;
+	}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<p>YOUR SCORE IS : <span id="scroe">0</span></p>
+		<a id="btn-restart" href="#reload">RESTART</a>
+		<canvas id="canvas" width="500" height="500"></canvas>
+	</div>
+	<div id="loading" data-author="niko"></div>
+	<script src="./easeljs-0.7.0.min.js"></script>
+	<script src="./preload.js"></script>
+	<script src="./tweenjs-0.5.1.min.js"></script>
+	<script src="./webfont.js"></script>
+	<script src="./link.js"></script>
+</body>
+</html>
