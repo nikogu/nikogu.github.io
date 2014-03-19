@@ -27,9 +27,6 @@ WebFont.load({
 //加载器
 function loadFunc() {
 	manifest = [{
-		src: "res/bg.png",
-		id: "bg"
-	}, {
 		src: "res/billd.png",
 		id: "billd"
 	}];
@@ -104,8 +101,8 @@ function init() {
 	var stage = new createjs.Stage('canvas');
 	//stage.enableMouseOver(20);
 
-	var bg = new createjs.Bitmap(loader.getResult('bg'));
-	stage.addChild(bg);
+	// var bg = new createjs.Bitmap(loader.getResult('bg'));
+	// stage.addChild(bg);
 
 	var SCALE = b2.SCALE;
 
