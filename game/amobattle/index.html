@@ -1,0 +1,44 @@
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black">
+   <meta name="format-detection" content="telephone=no">
+   <meta name="twcClient" content="false" id="twcClient">
+	<title>Billd's Battle</title>
+   <style type="text/css">
+   @font-face {
+      font-family: 'Revalia';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Revalia-Regular'), url('./res/font.woff') format('woff');
+   }
+   h1, canvas {
+      font-family: 'Revalia';
+      border: 5px solid #dddddd;
+      cursor: pointer;
+      margin: 0 auto;
+   }
+   #canvas, #debug-canvas {
+      border: 1px solid #dddddd;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -400px;
+   }
+   #debug-canvas {
+      display: none;
+   }
+   </style>
+</head>
+   <canvas id="canvas" width="800" height="500"></canvas>
+   <canvas id="debug-canvas" width="800" height="500"></canvas>
+   <script type="text/javascript" src="./lib/webfont.js"></script>
+	<script type="text/javascript" src="./lib/preload.js"></script>
+	<script type="text/javascript" src="./lib/easeljs.js"></script>
+	<script type="text/javascript" src="./lib/Box2dWeb-2.1.a.3.min.js"></script>
+	<script type="text/javascript" src="./lib/box2d-utils.js"></script>
+   <script type="text/javascript" src="./main.js"></script>
+</html>
