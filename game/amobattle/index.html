@@ -6,37 +6,26 @@
    <meta name="apple-mobile-web-app-status-bar-style" content="black">
    <meta name="format-detection" content="telephone=no">
    <meta name="twcClient" content="false" id="twcClient">
+   <link rel="stylesheet" type="text/css" href="./style.css">
 	<title>Billd's Battle</title>
-   <style type="text/css">
-   @font-face {
-      font-family: 'Revalia';
-      font-style: normal;
-      font-weight: 400;
-      src: local('Revalia-Regular'), url('./res/font.woff') format('woff');
-   }
-   h1, canvas {
-      font-family: 'Revalia';
-      border: 5px solid #dddddd;
-      cursor: pointer;
-      margin: 0 auto;
-   }
-   #canvas, #debug-canvas {
-      border: 1px solid #dddddd;
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      margin-left: -400px;
-   }
-   #debug-canvas {
-      display: none;
-   }
-   </style>
 </head>
    <canvas id="canvas" width="800" height="500"></canvas>
    <canvas id="debug-canvas" width="800" height="500"></canvas>
+   <div id="loading-box">
+      <h1>- Billd Battle -<b>By Niko</b></h1>
+      <p>主角Billd的好朋友Bunny被奇怪的东西绑架了，Billd无法忍受寂寞孤独的日子，决定去营救他的小伙伴，所以他需要通过重重奇怪的关卡，而你就是指引它的那个人，加油！(小提示:Billd具有贴着东西运动的技能)</p>
+      <p>The Bunny who is the leading role Billd's friend was take away by something strange, Bunny can't leaving without Bunny, so he decided to save Bunny by through many of obstacle. You are the guy who guide Bunny to Battle, Good Luck!(Tips:Billd can climb a wall)</p>
+      <div id="loading-num">0%</div>
+      <span id="btn-start">START</span>
+   </div>
+   <div id="over-box">
+      <h1>GAME OVER</h1>
+      <span id="btn-restart">RESTART</span>
+   </div>
+   <script type="text/javascript" src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js"></script>
    <script type="text/javascript" src="./lib/webfont.js"></script>
 	<script type="text/javascript" src="./lib/preload.js"></script>
+   <script type="text/javascript" src="./lib/sound.js"></script>
 	<script type="text/javascript" src="./lib/easeljs.js"></script>
 	<script type="text/javascript" src="./lib/Box2dWeb-2.1.a.3.min.js"></script>
 	<script type="text/javascript" src="./lib/box2d-utils.js"></script>

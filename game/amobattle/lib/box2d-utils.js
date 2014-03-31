@@ -132,6 +132,7 @@ window.b2 = (function() {
 			density = (config.density === undefined) ? 1.0 : config.density,
 			friction = (config.friction === undefined) ? 0.1 : config.friction,
 			restitution = (config.restitution === undefined) ? 0.2 : config.restitution;
+			isSensor = (config.isSensor === undefined) ? false : config.isSensor;
 
 		//构建刚体
 		var bodyDef = new b2BodyDef;
@@ -147,6 +148,7 @@ window.b2 = (function() {
 
 		//指定材质
 		var fixDef = new b2FixtureDef;
+		fixDef.isSensor = isSensor;
 		fixDef.density = density;
 		fixDef.friction = friction;
 		fixDef.restitution = restitution;
@@ -564,25 +566,31 @@ window.b2 = (function() {
 	//+++++++++++++++++++++++++++++++++++
 	b2Utils._contactItem = [];
 	b2Utils.contactWith = function(body1, body2, callback) {
-		body1._contactId = b2Utils._contactItem.length;
-		body2._contactId = b2Utils._contactItem.length;
-		b2Utils._contactItem.push({
-			body1: body1,
-			body2: body2,
-			callback: callback
-		});
+		if (Object.prototype.toString.call(body2) === '[object Array]') {
+			body2.forEach(function(body) {
+				body1._contactId = b2Utils._contactItem.length;
+				body._contactId = b2Utils._contactItem.length;
+				b2Utils._contactItem.push({
+					body1: body1,
+					body2: body,
+					callback: callback
+				});
+			});
+		} else {
+			body1._contactId = b2Utils._contactItem.length;
+			body2._contactId = b2Utils._contactItem.length;
+			b2Utils._contactItem.push({
+				body1: body1,
+				body2: body2,
+				callback: callback
+			});
+		}
 	}
 	b2Utils.startContactListener = function() {
 		var contactListener = new b2.b2ContactListener;
 		var body1,
 			body2;
 		contactListener.BeginContact = function(contact, manifold) {
-
-		};
-		contactListener.preSolve = function(contact, manifold) {
-
-		};
-		contactListener.PostSolve = function(contact, manifold) {
 			body1 = contact.GetFixtureA().GetBody();
 			body2 = contact.GetFixtureB().GetBody();
 			b2Utils._contactItem.forEach(function(obj) {
@@ -590,6 +598,48 @@ window.b2 = (function() {
 						body2._contactId == obj.body2._contactId) ||
 					(body2._contactId == obj.body1._contactId &&
 						body1._contactId == obj.body2._contactId)) {
+					obj.callback(obj.body1, obj.body2);
+				}
+			});
+
+		};
+		contactListener.preSolve = function(contact, manifold) {
+
+		};
+		contactListener.PostSolve = function(contact, manifold) {};
+		contactListener.EndContact = function(contact, manifold) {
+
+		};
+		b2.world.SetContactListener(contactListener);
+	}
+
+	//持续碰撞的检测	
+	b2Utils._contactItemSustain = [];
+	b2Utils.contactWithSustain = function(body1, body2, callback) {
+		body1._contactIdSustain = b2Utils._contactItem.length;
+		body2._contactIdSustain = b2Utils._contactItem.length;
+		b2Utils._contactItemSustain.push({
+			body1: body1,
+			body2: body2,
+			callback: callback
+		});
+	}
+	b2Utils.startContactListenerSustain = function() {
+		var contactListener = new b2.b2ContactListener;
+		var body1,
+			body2;
+		contactListener.BeginContact = function(contact, manifold) {};
+		contactListener.preSolve = function(contact, manifold) {
+
+		};
+		contactListener.PostSolve = function(contact, manifold) {
+			body1 = contact.GetFixtureA().GetBody();
+			body2 = contact.GetFixtureB().GetBody();
+			b2Utils._contactItemSustain.forEach(function(obj) {
+				if ((body1._contactIdSustain == obj.body1._contactIdSustain &&
+						body2._contactIdSustain == obj.body2._contactIdSustain) ||
+					(body2._contactIdSustain == obj.body1._contactIdSustain &&
+						body1._contactIdSustain == obj.body2._contactIdSustain)) {
 					obj.callback(obj.body1, obj.body2);
 				}
 			});
@@ -617,6 +667,10 @@ window.b2 = (function() {
 	// 镜头跟随（debug）
 	//+++++++++++++++++++++++++++++++++++
 	b2Utils._camera = {};
+	b2Utils._offset = {x:0,y:0};
+	b2Utils.cameraFollowUpdate = function(body) {
+		b2Utils._camera.body = body;
+	}
 	b2Utils.cameraFollow = function(body, _config) {
 
 		var config = _config || {};
@@ -688,6 +742,9 @@ window.b2 = (function() {
 
 			camera.ox = camera.x;
 			camera.oy = camera.y;
+
+			b2Utils._offset.x = -camera.x;
+			b2Utils._offset.y = -camera.y;
 
 			//console.log([camera.dx, camera.dy]);
 			b2Utils.mouseOffset.x = camera.x;
