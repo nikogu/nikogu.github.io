@@ -93,37 +93,45 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 		}, {
 			src: "res/billd.png",
 			id: "billd"
-		}, {
-			src: "res/bg.mp3",
-			id: "m-bg"
-		}, {
-			src: "res/crash.wav",
-			id: "m-crash"
-		}, {
-			src: "res/success.mp3",
-			id: "m-sucess"
-		}, {
-			src: "res/jump.wav",
-			id: "m-jump"
-		}, {
-			src: "res/click.wav",
-			id: "m-click"
-		}, {
-			src: "res/score.wav",
-			id: "m-score"
-		}, {
-			src: "res/over.mp3",
-			id: "m-over"
-		}, {
-			src: "res/thron.ogg",
-			id: "m-thron"
 		}];
-
-		loader = new createjs.LoadQueue(false);
+		loader = new createjs.LoadQueue();
 		createjs.Sound.alternateExtensions = ['mp3', 'wav', 'ogg'];
 		loader.installPlugin(createjs.Sound);
+		loader.loadFile({
+			src: "res/bg.mp3",
+			id: "m-bg"
+		});
+		loader.loadFile({
+			src: "res/crash.wav",
+			id: "m-crash"
+		});
+		loader.loadFile({
+			src: "res/success.mp3",
+			id: "m-sucess"
+		});
+		loader.loadFile({
+			src: "res/jump.wav",
+			id: "m-jump"
+		});
+		loader.loadFile({
+			src: "res/click.wav",
+			id: "m-click"
+		});
+		loader.loadFile({
+			src: "res/score.wav",
+			id: "m-score"
+		});
+		loader.loadFile({
+			src: "res/over.mp3",
+			id: "m-over"
+		});
+		loader.loadFile({
+			src: "res/thron.ogg",
+			id: "m-thron"
+		});
+		loader.loadManifest(manifest);
 
-		loader.addEventListener("complete", function() {
+		loader.on("complete", function() {
 			clearInterval(timmer);
 			loadingNum.innerHTML = '100%';
 			startBtn.style.display = 'block';
@@ -151,7 +159,6 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 
 			//init();
 		});
-		loader.loadManifest(manifest);
 	}
 
 	function init() {
@@ -173,7 +180,11 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 
 		var bg = new createjs.Bitmap(loader.getResult('bg'));
 		var bgBound = bg.getBounds();
-		bg.cache(bgBound.x, bgBound.y, bgBound.width, bgBound.height);
+		if ( bgBound ) {
+			bg.cache(bgBound.x, bgBound.y, bgBound.width, bgBound.height);
+		} else {
+			bg.cache(0, 0, gamePortWidth, gamePortHeight);
+		}
 		stage.addChild(bg);
 
 		//+++++++++++++++++++++++++++++++++++
