@@ -67,7 +67,7 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 
 		loadingNum.innerHTML = count + '%';
 
-	}, 10);
+	}, 500);
 
 	//++++++++++++++++++++++++++++++++++++
 	// 字体加载
