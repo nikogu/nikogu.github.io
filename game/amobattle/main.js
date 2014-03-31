@@ -67,7 +67,7 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 
 		loadingNum.innerHTML = count + '%';
 
-	}, 500);
+	}, 1000);
 
 	//++++++++++++++++++++++++++++++++++++
 	// 字体加载
@@ -88,7 +88,7 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 	//++++++++++++++++++++++++++++++++++++
 	function loadFunc() {
 		var manifest = [{
-			src: "res/bg.png",
+			src: "res/bg.jpg",
 			id: "bg"
 		}, {
 			src: "res/billd.png",
