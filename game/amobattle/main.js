@@ -58,6 +58,7 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 		overBox = document.getElementById('over-box'),
 		restartBtn = $('.btn-restart'),
 		successBox = document.getElementById('success-box'),
+		tips = $('#tips'),
 		count = 0,
 		isOver = false,
 		isStart = false,
@@ -149,6 +150,7 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 				loadingBox.style.top = '-500px';
 				overBox.style.top = '-500px';
 				createjs.Sound.play('m-click');
+				tips.hide();
 				init();
 			}
 
