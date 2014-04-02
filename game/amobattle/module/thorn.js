@@ -74,7 +74,7 @@ KISSY.add('module/thorn', function(S, Draw) {
 		},this));
 		this.bodys.forEach(function(body) {
 			b2.world.DestroyBody(body);
-		})
+		});
 	}
 
 	return Thorn;

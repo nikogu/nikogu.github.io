@@ -544,7 +544,7 @@ window.b2 = (function() {
 
 		var config = _config || {};
 		var collide = config.collide || false,
-			speed = config.speed || Math.PI,
+			speed = (config.speed === undefined) ? Math.PI : config.speed,
 			torque = config.torque || 500;
 
 		var revoluteJoint = new b2RevoluteJointDef();
@@ -679,7 +679,8 @@ window.b2 = (function() {
 		b2Utils._camera.debugCanvas = config.debugCanvas || document.getElementById("debug-canvas");
 		b2Utils._camera.debugCtx = b2Utils._camera.debugCanvas.getContext('2d');
 
-		b2Utils._camera.space = config.space || 100;
+		b2Utils._camera.spaceH= config.spaceH || 100;
+		b2Utils._camera.spaceW = config.spaceW || 100;
 		b2Utils._camera.x = config.x || 0;
 		b2Utils._camera.y = config.y || 0;
 		b2Utils._camera.ox = b2Utils._camera.x;
@@ -712,26 +713,26 @@ window.b2 = (function() {
 			//向下
 			//利用相对于stage的坐标来作为计算
 			//而camera作为偏移量
-			if (clocal_y > (camera.stagePortHeight - camera.space)) {
-				camera.y = (camera.stagePortHeight - camera.space) - cbody_y;
+			if (clocal_y > (camera.stagePortHeight - camera.spaceH)) {
+				camera.y = (camera.stagePortHeight - camera.spaceH) - cbody_y;
 				if (camera.y <= camera.stagePortHeight - camera.gamePortHeight) {
 					camera.y = camera.stagePortHeight - camera.gamePortHeight;
 				}
-			} else if (clocal_y < camera.space) {
-				camera.y = camera.space - cbody_y;
+			} else if (clocal_y < camera.spaceH) {
+				camera.y = camera.spaceH - cbody_y;
 				if (camera.y >= 0) {
 					camera.y = 0;
 				}
 			}
 
 			//左右
-			if (clocal_x < camera.space) {
-				camera.x = camera.space - cbody_x;
+			if (clocal_x < camera.spaceW) {
+				camera.x = camera.spaceW - cbody_x;
 				if (camera.x >= 0) {
 					camera.x = 0;
 				}
-			} else if (clocal_x > (camera.stagePortWidth - camera.space)) {
-				camera.x = (camera.stagePortWidth - camera.space) - cbody_x;
+			} else if (clocal_x > (camera.stagePortWidth - camera.spaceW)) {
+				camera.x = (camera.stagePortWidth - camera.spaceW) - cbody_x;
 				if (camera.x <= camera.stagePortWidth - camera.gamePortWidth) {
 					camera.x = camera.stagePortWidth - camera.gamePortWidth;
 				}

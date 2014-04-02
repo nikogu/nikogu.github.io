@@ -26,6 +26,7 @@ KISSY.add('module/billd', function(S) {
 		this.statusRight = false;
 		this.jumping = true;
 		this.dead = false;
+		this.stop = false;
 		//this.init();
 	}
 	Billd.prototype.show = function() {
@@ -65,6 +66,11 @@ KISSY.add('module/billd', function(S) {
 		this.go();
 	}
 	Billd.prototype.update = function() {
+
+		if ( this.stop ) {
+			this.body.SetAwake(false);
+			return;
+		}
 
 		//如果...billd挂了
 		if (this.dead) {
@@ -113,7 +119,7 @@ KISSY.add('module/billd', function(S) {
 	}
 	Billd.prototype.go = function() {
 		window.addEventListener('keydown', bind(function(e) {
-			if (this.dead) {
+			if (this.dead || this.stop) {
 				return;
 			}
 			switch (e.keyCode) {
@@ -152,7 +158,7 @@ KISSY.add('module/billd', function(S) {
 			}
 		}, this));
 		window.addEventListener('keyup', bind(function(e) {
-			if (this.dead) {
+			if (this.dead || this.stop) {
 				return;
 			}
 			switch (e.keyCode) {

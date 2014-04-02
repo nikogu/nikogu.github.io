@@ -39,12 +39,15 @@ function bind(fn, context) {
 //全局变量
 //+++++++++++++++++++++++++++++
 var loader,
-	SCALE = b2.SCALE;
+	SCALE = b2.SCALE,
+	isDebug = false;
 
 //+++++++++++++++++++++++++++++
 //游戏入口
 //+++++++++++++++++++++++++++++
-KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData1) {
+KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData1) {
+
+	var $ = Node.all;
 
 	//++++++++++++++++++++++++++++++++++++
 	// 初始加载
@@ -53,7 +56,8 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 		startBtn = document.getElementById('btn-start'),
 		loadingBox = document.getElementById('loading-box'),
 		overBox = document.getElementById('over-box'),
-		restartBtn = document.getElementById('btn-restart'),
+		restartBtn = $('.btn-restart'),
+		successBox = document.getElementById('success-box'),
 		count = 0,
 		isOver = false,
 		isStart = false,
@@ -180,7 +184,7 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 
 		var bg = new createjs.Bitmap(loader.getResult('bg'));
 		var bgBound = bg.getBounds();
-		if ( bgBound ) {
+		if (bgBound) {
 			bg.cache(bgBound.x, bgBound.y, bgBound.width, bgBound.height);
 		} else {
 			bg.cache(0, 0, gamePortWidth, gamePortHeight);
@@ -234,6 +238,9 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 				goldCollectFunc: function(gold) {
 					scoreText.score++;
 					scoreText.setText('YOUR SCORE: ' + scoreText.score);
+					if (scoreText.score >= mapData.targetScore) {
+						win();
+					}
 				},
 				goldUpdateFunc: function() {
 					this.target = {
@@ -262,11 +269,7 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 			b2.b2Utils.contactWith(billd.body, scene.getThronBodys(), function(billdBody, thronBody) {
 				billdBody.master.dead = true;
 				if (!isOver) {
-					createjs.Sound.stop('m-bg');
-					createjs.Sound.play('m-crash');
-					createjs.Sound.play('m-over');
 					over();
-					isOver = true;
 					//overBox.style.top = '0';
 				}
 			});
@@ -283,7 +286,8 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 			stagePortHeight: viewPortHeight,
 			gamePortHeight: gamePortHeight,
 			gamePortWidth: gamePortWidth,
-			space: 400
+			spaceW: 400,
+			spaceH: 200
 		});
 
 		//更新代码
@@ -308,27 +312,49 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 			stage.clear();
 		}
 
+		//游戏成功
+		function win() {
+			isOver = true;
+			createjs.Sound.stop('m-bg');
+			createjs.Sound.play('m-sucess');
+			successBox.style.top = '0';
+			billd.stop = true;
+		}
+
 		//游戏结束
 		function over() {
+			isOver = true;
 			overBox.style.top = '0';
+			createjs.Sound.stop('m-bg');
+			createjs.Sound.play('m-crash');
+			createjs.Sound.play('m-over');
 		}
-		restartBtn.addEventListener('click', function() {
+		restartBtn.on('click', function() {
 			if (!isOver) {
 				return;
 			}
 			isOver = false;
 			loadingBox.style.top = '-500px';
 			overBox.style.top = '-500px';
+			successBox.style.top = '-500px';
 			clear();
 			createGame(mapData);
 		});
+
+		//网格
+		if (isDebug) {
+			Draw.drawGridding(gamePortWidth, gamePortHeight, 100, stage);
+		}
 
 		//+++++++++++++++++++++++++++++++++++
 		//具体代码结束
 		//+++++++++++++++++++++++++++++++++++
 
 		//setup debug draw
-		b2.b2Utils.debug(document.getElementById("debug-canvas"));
+		if (isDebug) {
+			document.getElementById("debug-canvas").style.display = 'block';
+			b2.b2Utils.debug(document.getElementById("debug-canvas"));
+		}
 
 		//循环方法
 		function tick() {
@@ -344,7 +370,9 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 				8, //velocity iterations
 				3 //position iterations
 			);
-			b2.world.DrawDebugData();
+			if (isDebug) {
+				b2.world.DrawDebugData();
+			}
 			b2.world.ClearForces();
 
 			stage.update();
@@ -359,7 +387,8 @@ KISSY.add('main', function(S, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData
 	}
 
 }, {
-	requires: ['module/billd', 'module/draw', 'module/scene', 'module/gold', 'module/uitext', 'module/thorn',
+	requires: ['node',
+		'module/billd', 'module/draw', 'module/scene', 'module/gold', 'module/uitext', 'module/thorn',
 		'data/senceData1'
 	]
 });

@@ -5,7 +5,7 @@
  * @author yujiang<zhihao.gzh@alibaba-inc.com>
  * @data 2014-03-23
  */
-KISSY.add('module/scene', function(S, Draw, Gold, Thorn) {
+KISSY.add('module/scene', function(S, Draw, Gold, Thorn, Windmill, Seesaw) {
 
 	//Barrier
 	function Barrier(stage) {
@@ -60,7 +60,17 @@ KISSY.add('module/scene', function(S, Draw, Gold, Thorn) {
 			stage: this.stage,
 			billd: this.billd,
 			scale: this.scale
-		})
+		});
+
+		this.windmillManager = new Windmill({
+			stage: this.stage,
+			scale: this.scale
+		});
+
+		this.seesawManager = new Seesaw({
+			stage: this.stage,
+			scale: this.scale
+		});
 	}
 	Scene.prototype.addBound = function(_w, _h, _ply, _config) {
 		this.bound = new createjs.Shape();
@@ -99,6 +109,10 @@ KISSY.add('module/scene', function(S, Draw, Gold, Thorn) {
 		});
 		//add bound body
 		bodys.push(this.bound.body);
+		//add windmill body
+		bodys = bodys.concat(this.windmillManager.bodys);
+		//add seesaw body
+		bodys = bodys.concat(this.seesawManager.bodys);
 		return bodys;
 	}
 	Scene.prototype.getThronBodys = function() {
@@ -109,6 +123,8 @@ KISSY.add('module/scene', function(S, Draw, Gold, Thorn) {
 	Scene.prototype.update = function() {
 		this.thronManager.update();
 		this.goldManager.update();
+		this.windmillManager.update();
+		this.seesawManager.update();
 	}
 
 	//根据数据创建场景
@@ -119,17 +135,21 @@ KISSY.add('module/scene', function(S, Draw, Gold, Thorn) {
 		this.makeBarriers(data.barriers);
 		this.goldManager.makeGolds(data.golds);
 		this.thronManager.makeThorns(data.throns);
+		this.windmillManager.makeWindmill(data.windmill);
+		this.seesawManager.makeSeesaw(data.seesaw);
 	}
 	Scene.prototype.clear = function() {
 		this.clearPath();
 		this.clearBound();
 		this.barrierManager.clear();	
 		this.thronManager.clear();
+		this.windmillManager.clear();
 		this.goldManager.clear();
+		this.seesawManager.clear();
 	}
 
 	return Scene;
 
 }, {
-	requires: ['module/draw', 'module/gold', 'module/thorn']
+	requires: ['module/draw', 'module/gold', 'module/thorn', 'module/windmill', 'module/seesaw']
 });
