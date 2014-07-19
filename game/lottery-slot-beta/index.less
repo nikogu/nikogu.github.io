@@ -1,0 +1,176 @@
+.transform(@transform) {
+    -webkit-transform: @transform; 
+    -moz-transform: @transform;
+    -ms-transform: @transform;
+    -o-transform: @transform;
+    transform: @transform;
+}
+.perspective(@dis) {
+    -webkit-perspective: @dis;
+    -moz-perspective: @dis;
+    -ms-perspective: @dis;
+    -o-perspective: @dis;
+    perspective: @dis; 
+}
+//3d透视
+.preserve3d() {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.perspective-origin(@x, @y) {
+    -webkit-perspective-origin: @x @y;
+    -moz-perspective-origin: @x @y;
+    -ms-perspective-origin: @x @y;
+    -o-perspective-origin: @x @y;
+    perspective-origin: @x @y;
+}
+.backface-visibility(@visible) {
+   -webkit-backface-visibility: @visible; 
+   -moz-backface-visibility: @visible; 
+   -ms-backface-visibility: @visible; 
+   -o-backface-visibility: @visible; 
+   backface-visibility: @visible; 
+}
+
+@color-border: #aaaaaa;
+@color-box: #dddddd;
+@color-box-back: #eeeeee;
+@color-roller: #fffff0;
+@color-roller-back: #dddddd;
+@color-roller-border: #dddddd;
+
+@bg-wood1: 'http://gtms03.alicdn.com/tps/i3/TB1c1KmFVXXXXb8XpXX5rDaIVXX-80-80.png';
+@bg-wood2: 'http://gtms02.alicdn.com/tps/i2/TB1zhycFVXXXXXrXVXX5rDaIVXX-80-80.png';
+@bg-pik: 'http://gtms01.alicdn.com/tps/i1/TB1qKV.FVXXXXbQXVXX5rDaIVXX-80-80.png';
+@bg-white: 'http://gtms03.alicdn.com/tps/i3/TB1PeCqFVXXXXX0XXXX5rDaIVXX-80-80.png';
+
+//clearfix
+.clearfix() {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+    *zoom: 1;
+}
+html, body {
+    background: url(@bg-pik) repeat 0 0;
+}
+.wrap {
+}
+.chip-wrap {
+    .clearfix();
+    .preserve3d();
+    .transform(perspective(2000px) rotateY(0deg));
+    .perspective(2000px);
+
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 250px;
+    width: 360px;
+    margin-left: -180px;
+
+    .title {
+        .transform(perspective(1200px) rotateY(0deg) translateZ(100px) translateY(-125px));
+        background: url(@bg-wood2) repeat 0 0;
+        color: #454545;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -200px;
+        width: 400px;
+        height: 50px;
+        text-align: center;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4) inset;
+    }
+    .wall {
+        background: url(@bg-wood1) repeat 0 0;
+        border: 1px solid @color-border;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -200px;
+        margin-top: -100px;
+        width: 400px;
+        height: 200px;
+    }
+    .wall-back {
+        .transform(perspective(1200px) rotateY(0deg) translateZ(-100px));
+        background-color: @color-box-back;
+    }
+    .wall-front {
+        .transform(perspective(1200px) rotateY(180deg) translateZ(-100px));
+        background: rgba(200, 200, 200, 0.2);
+        .mark-line-t, .mark-line-b {
+            background: rgba(0, 0, 0, 0.2);
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+        }
+        .mark-line-b {
+            top: auto;
+            bottom: 0;
+        }
+    }
+    .wall-top {
+        .transform(perspective(1200px) rotateX(90deg) translateZ(-100px));
+    }
+    .wall-bottom {
+        .transform(perspective(1200px) rotateX(-90deg) translateZ(-100px));
+    }
+    .wall-left, .wall-right {
+        margin-left: -100px;
+        margin-top: -100px;
+        width: 200px;
+        height: 200px;
+    }
+    .wall-left {
+        .transform(perspective(1200px) rotateY(90deg) translateZ(-200px));
+    }
+    .wall-right {
+        .transform(perspective(1200px) rotateY(-90deg) translateZ(-200px));
+    }
+
+    .roller {
+        //.perspective(800px);
+        .preserve3d();
+        .backface-visibility(hidden);
+        //.transform(rotateX(60deg));
+        display: block;
+        margin: 10px;
+        overflow: visible;
+        position: relative;
+        float: left;
+        .left-circle, .right-circle {
+            border: 1px solid @color-roller-border;
+            background: url(@bg-wood2) repeat 0 0;
+            border-radius: 100%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+        }
+        .chip {
+            .backface-visibility(hidden);
+            background-size: 100%;
+            background-color: @color-roller;
+            border-top: 1px solid @color-roller;
+            border-bottom: 1px solid @color-roller;
+            border-left: 1px solid @color-roller-border;
+            border-right: 1px solid @color-roller-border;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}

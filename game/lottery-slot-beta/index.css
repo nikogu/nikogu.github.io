@@ -1,0 +1,172 @@
+html,
+body {
+  background: url('http://gtms01.alicdn.com/tps/i1/TB1qKV.FVXXXXbQXVXX5rDaIVXX-80-80.png') repeat 0 0;
+}
+.chip-wrap {
+  *zoom: 1;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: perspective(2000px) rotateY(0deg);
+  -moz-transform: perspective(2000px) rotateY(0deg);
+  -ms-transform: perspective(2000px) rotateY(0deg);
+  -o-transform: perspective(2000px) rotateY(0deg);
+  transform: perspective(2000px) rotateY(0deg);
+  -webkit-perspective: 2000px;
+  -moz-perspective: 2000px;
+  -ms-perspective: 2000px;
+  -o-perspective: 2000px;
+  perspective: 2000px;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 250px;
+  width: 360px;
+  margin-left: -180px;
+}
+.chip-wrap:before,
+.chip-wrap:after {
+  content: " ";
+  display: table;
+}
+.chip-wrap:after {
+  clear: both;
+}
+.chip-wrap .title {
+  -webkit-transform: perspective(1200px) rotateY(0deg) translateZ(100px) translateY(-125px);
+  -moz-transform: perspective(1200px) rotateY(0deg) translateZ(100px) translateY(-125px);
+  -ms-transform: perspective(1200px) rotateY(0deg) translateZ(100px) translateY(-125px);
+  -o-transform: perspective(1200px) rotateY(0deg) translateZ(100px) translateY(-125px);
+  transform: perspective(1200px) rotateY(0deg) translateZ(100px) translateY(-125px);
+  background: url('http://gtms02.alicdn.com/tps/i2/TB1zhycFVXXXXXrXVXX5rDaIVXX-80-80.png') repeat 0 0;
+  color: #454545;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -200px;
+  width: 400px;
+  height: 50px;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4) inset;
+}
+.chip-wrap .wall {
+  background: url('http://gtms03.alicdn.com/tps/i3/TB1c1KmFVXXXXb8XpXX5rDaIVXX-80-80.png') repeat 0 0;
+  border: 1px solid #aaaaaa;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: -100px;
+  width: 400px;
+  height: 200px;
+}
+.chip-wrap .wall-back {
+  -webkit-transform: perspective(1200px) rotateY(0deg) translateZ(-100px);
+  -moz-transform: perspective(1200px) rotateY(0deg) translateZ(-100px);
+  -ms-transform: perspective(1200px) rotateY(0deg) translateZ(-100px);
+  -o-transform: perspective(1200px) rotateY(0deg) translateZ(-100px);
+  transform: perspective(1200px) rotateY(0deg) translateZ(-100px);
+  background-color: #eeeeee;
+}
+.chip-wrap .wall-front {
+  -webkit-transform: perspective(1200px) rotateY(180deg) translateZ(-100px);
+  -moz-transform: perspective(1200px) rotateY(180deg) translateZ(-100px);
+  -ms-transform: perspective(1200px) rotateY(180deg) translateZ(-100px);
+  -o-transform: perspective(1200px) rotateY(180deg) translateZ(-100px);
+  transform: perspective(1200px) rotateY(180deg) translateZ(-100px);
+  background: rgba(200, 200, 200, 0.2);
+}
+.chip-wrap .wall-front .mark-line-t,
+.chip-wrap .wall-front .mark-line-b {
+  background: rgba(0, 0, 0, 0.2);
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+}
+.chip-wrap .wall-front .mark-line-b {
+  top: auto;
+  bottom: 0;
+}
+.chip-wrap .wall-top {
+  -webkit-transform: perspective(1200px) rotateX(90deg) translateZ(-100px);
+  -moz-transform: perspective(1200px) rotateX(90deg) translateZ(-100px);
+  -ms-transform: perspective(1200px) rotateX(90deg) translateZ(-100px);
+  -o-transform: perspective(1200px) rotateX(90deg) translateZ(-100px);
+  transform: perspective(1200px) rotateX(90deg) translateZ(-100px);
+}
+.chip-wrap .wall-bottom {
+  -webkit-transform: perspective(1200px) rotateX(-90deg) translateZ(-100px);
+  -moz-transform: perspective(1200px) rotateX(-90deg) translateZ(-100px);
+  -ms-transform: perspective(1200px) rotateX(-90deg) translateZ(-100px);
+  -o-transform: perspective(1200px) rotateX(-90deg) translateZ(-100px);
+  transform: perspective(1200px) rotateX(-90deg) translateZ(-100px);
+}
+.chip-wrap .wall-left,
+.chip-wrap .wall-right {
+  margin-left: -100px;
+  margin-top: -100px;
+  width: 200px;
+  height: 200px;
+}
+.chip-wrap .wall-left {
+  -webkit-transform: perspective(1200px) rotateY(90deg) translateZ(-200px);
+  -moz-transform: perspective(1200px) rotateY(90deg) translateZ(-200px);
+  -ms-transform: perspective(1200px) rotateY(90deg) translateZ(-200px);
+  -o-transform: perspective(1200px) rotateY(90deg) translateZ(-200px);
+  transform: perspective(1200px) rotateY(90deg) translateZ(-200px);
+}
+.chip-wrap .wall-right {
+  -webkit-transform: perspective(1200px) rotateY(-90deg) translateZ(-200px);
+  -moz-transform: perspective(1200px) rotateY(-90deg) translateZ(-200px);
+  -ms-transform: perspective(1200px) rotateY(-90deg) translateZ(-200px);
+  -o-transform: perspective(1200px) rotateY(-90deg) translateZ(-200px);
+  transform: perspective(1200px) rotateY(-90deg) translateZ(-200px);
+}
+.chip-wrap .roller {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: block;
+  margin: 10px;
+  overflow: visible;
+  position: relative;
+  float: left;
+}
+.chip-wrap .roller .left-circle,
+.chip-wrap .roller .right-circle {
+  border: 1px solid #dddddd;
+  background: url('http://gtms02.alicdn.com/tps/i2/TB1zhycFVXXXXXrXVXX5rDaIVXX-80-80.png') repeat 0 0;
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+.chip-wrap .roller .chip {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-size: 100%;
+  background-color: #fffff0;
+  border-top: 1px solid #fffff0;
+  border-bottom: 1px solid #fffff0;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

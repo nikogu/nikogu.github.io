@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+	<title>简单的木盒老虎机</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+
+	<div class="chip-wrap">
+		<div class="title">
+			<p>木盒老虎机——点我来抽奖</p>
+		</div>
+		<div class="wall wall-back"></div>
+		<div class="wall wall-front">
+			<div class="mark-line-t"></div>
+			<div class="mark-line-b"></div>
+		</div>
+		<div class="wall wall-top"></div>
+		<div class="wall wall-bottom"></div>
+		<div class="wall wall-left"></div>
+		<div class="wall wall-right"></div>
+	</div>
+	<script type="text/javascript" src="http://g.tbcdn.cn/kissy/k/1.4.4/seed-min.js"></script>	
+	<script type="text/javascript">
+        KISSY.config({
+	        packages: [{
+                name: 'mod',
+                path: './mod/',
+                ignorePackageNameInUri: true,
+                debug: true
+            }]
+        });
+	</script>
+	<script type="text/javascript" src="./index.js"></script>
+	<script type="text/javascript">
+	KISSY.add('main', function(S, require) {
+		var $ = require('node').all,
+			Slot = require('lottery-slot');
+
+		var slot = new Slot({
+			pic: 'http://gtms03.alicdn.com/tps/i3/TB1.dSXFVXXXXcZXVXXKjWJTXXX-200-900.png',
+			container: $('.chip-wrap')
+		});
+	});
+	KISSY.use('main');
+	</script>
+</body>
+</html>
