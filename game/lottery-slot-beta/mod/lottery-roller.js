@@ -5,11 +5,13 @@
  * @date 2014-07-19
  *
  */
+
 KISSY.add(function(S, require) {
 
 	var Base = require('base'),
 		$ = require('node').all,
-		Timeline = require('mod/timeline');
+		Timeline = require('mod/timeline'),
+		Easing = require('mod/lottery-effect');
 
 	var Roller = Base.extend({
 		initializer: function() {
@@ -21,13 +23,21 @@ KISSY.add(function(S, require) {
 
 			this.tm = Timeline.use('lottery-roller').init(1000 / 60);
 
-			//swing
-			var PI = Math.PI,
-				cos = Math.cos;
 
 			this.swing = function(t) {
 				return 0.5 - (cos(t * PI) / 2);
 			};
+			//cubic-bezier(0.57, -0.03, 0.57, 1.1)
+			this.elasticOut = function(t) {
+				var p = 0.4,
+					s = p / 4;
+				if (t === 0 || t === 1) {
+					return t;
+				}
+				return pow(2, -10 * t) * sin((t - s) * (2 * PI) / p) + 1;
+			}
+
+			this.effect = Easing.cubicBezier(0.57, -0.03, 0.57, 1.1);
 
 			//this.move();	
 		},
@@ -93,7 +103,7 @@ KISSY.add(function(S, require) {
 			var self = this;
 
 			var toDeg = num * 40 + 3600,
-				total = Math.random() * 10000 + 5000;
+				total = Math.random() * 5000 + 5000;
 
 			self.tm.createTask({
 				duration: total,
@@ -101,7 +111,7 @@ KISSY.add(function(S, require) {
 
 				},
 				onTimeUpdate: function(t) {
-					self.get('node').css('transform', 'rotateX(' + (self.swing(t / total) * toDeg + self.get('deg')) + 'deg)');
+					self.get('node').css('transform', 'rotateX(' + (self.effect(t / total) * toDeg + self.get('deg')) + 'deg)');
 				},
 				onTimeEnd: function() {
 					self.get('node').css('transform', 'rotateX(' + (toDeg + self.get('deg')) + 'deg)');
