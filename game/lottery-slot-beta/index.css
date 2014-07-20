@@ -20,11 +20,10 @@ body {
   -o-perspective: 2000px;
   perspective: 2000px;
   cursor: pointer;
-  position: absolute;
-  left: 50%;
+  position: relative;
+  margin: 0 auto;
   top: 250px;
   width: 360px;
-  margin-left: -180px;
 }
 .chip-wrap:before,
 .chip-wrap:after {
@@ -34,6 +33,71 @@ body {
 .chip-wrap:after {
   clear: both;
 }
+.chip-wrap .wrap-3d,
+.chip-wrap .wrap-2d {
+  display: none;
+}
+.chip-wrap .bg {
+  *zoom: 1;
+  background: url('http://gtms02.alicdn.com/tps/i2/TB1zhycFVXXXXXrXVXX5rDaIVXX-80-80.png') repeat 0 0;
+  border: 5px solid #aaaaaa;
+  cursor: pointer;
+  padding: 0 50px;
+  position: relative;
+  top: 0;
+  left: 50%;
+  margin-top: -125px;
+  margin-left: -230px;
+  height: 250px;
+  width: 360px;
+}
+.chip-wrap .bg:before,
+.chip-wrap .bg:after {
+  content: " ";
+  display: table;
+}
+.chip-wrap .bg:after {
+  clear: both;
+}
+.chip-wrap .bg .slide {
+  background: #fffff0;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  width: 100px;
+  height: 250px;
+  margin: 0 10px;
+}
+.chip-wrap .bg .slide .list {
+  position: absolute;
+  left: 0;
+  top: 100px;
+}
+.chip-wrap .bg .slide .list .clip {
+  display: block;
+  height: 50px;
+  width: 100px;
+}
+.chip-wrap .bg .slide .list-b {
+  top: -800px;
+}
+.chip-wrap .bg .mark-line-b,
+.chip-wrap .bg .mark-line-t {
+  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.2);
+  filter: alpha(opacity=20);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1;
+}
+.chip-wrap .bg .mark-line-b {
+  top: auto;
+  bottom: 0;
+}
 .chip-wrap .title {
   -webkit-transform: perspective(1200px) rotateY(0deg) translateZ(100px) translateY(-125px);
   -moz-transform: perspective(1200px) rotateY(0deg) translateZ(100px) translateY(-125px);
@@ -42,6 +106,7 @@ body {
   transform: perspective(1200px) rotateY(0deg) translateZ(100px) translateY(-125px);
   background: url('http://gtms02.alicdn.com/tps/i2/TB1zhycFVXXXXXrXVXX5rDaIVXX-80-80.png') repeat 0 0;
   color: #454545;
+  display: block;
   position: absolute;
   top: 0;
   left: 50%;

@@ -9,7 +9,6 @@ KISSY.add(function(S, require) {
 
 	var Base = require('base'),
 		$ = require('node').all,
-		Anim = require('anim'),
 		Timeline = require('mod/timeline');
 
 	var Roller = Base.extend({
@@ -20,7 +19,7 @@ KISSY.add(function(S, require) {
 
 			this.create();
 
-			this.tm = Timeline.use('roller').init(1000 / 60);
+			this.tm = Timeline.use('lottery-roller').init(1000 / 60);
 
 			//两个缓动效果函数，先放着
 			var PI = Math.PI,
@@ -115,22 +114,22 @@ KISSY.add(function(S, require) {
 			this.get('slot').append(root);
 		},
 		run: function(num, callback) {
-
-			var deg = num * 40 + 3600,
-				total = Math.random() * 5000 + 10000;
-
 			var self = this;
 
-			this.tm.createTask({
+			var toDeg = num * 40 + 3600,
+				total = Math.random() * 10000 + 10000;
+
+			self.tm.createTask({
 				duration: total,
 				onTimeStart: function() {
 
 				},
 				onTimeUpdate: function(t) {
-					self.get('node').css('transform', 'rotateX(' + (self.elasticBoth(t / total) * deg) + 'deg)');
+					self.get('node').css('transform', 'rotateX(' + (self.elasticBoth(t / total) * toDeg + self.get('deg')) + 'deg)');
 				},
 				onTimeEnd: function() {
-					self.get('node').css('transform', 'rotateX(' + (deg) + 'deg)');
+					self.get('node').css('transform', 'rotateX(' + (toDeg + self.get('deg')) + 'deg)');
+					self.set('deg', (toDeg + self.get('deg') - 3600));
 					if (callback) {
 						callback();
 					}
@@ -156,6 +155,9 @@ KISSY.add(function(S, require) {
 				value: ''
 			},
 			radius: {
+				value: 0
+			},
+			deg: {
 				value: 0
 			}
 		}
