@@ -21,36 +21,12 @@ KISSY.add(function(S, require) {
 
 			this.tm = Timeline.use('lottery-roller').init(1000 / 60);
 
-			//两个缓动效果函数，先放着
+			//swing
 			var PI = Math.PI,
-				sin = Math.sin,
-				pow = Math.pow,
-				BACK_CONST = 1.70158;
+				cos = Math.cos;
 
-			this.elasticBoth = function(t) {
-				var p = 0.45,
-					s = p / 4;
-				if (t === 0 || (t *= 2) === 2) {
-					return t;
-				}
-
-				if (t < 1) {
-					return -0.5 * (pow(2, 10 * (t -= 1)) *
-						sin((t - s) * (2 * PI) / p));
-				}
-				return pow(2, -10 * (t -= 1)) *
-					sin((t - s) * (2 * PI) / p) * 0.5 + 1;
-			};
-
-			this.backBoth = function(t) {
-				var s = BACK_CONST;
-				var m = (s *= 1.525) + 1;
-
-				if ((t *= 2) < 1) {
-					return 0.5 * (t * t * (m * t - s));
-				}
-				return 0.5 * ((t -= 2) * t * (m * t + s) + 2);
-
+			this.swing = function(t) {
+				return 0.5 - (cos(t * PI) / 2);
 			};
 
 			//this.move();	
@@ -117,7 +93,7 @@ KISSY.add(function(S, require) {
 			var self = this;
 
 			var toDeg = num * 40 + 3600,
-				total = Math.random() * 10000 + 10000;
+				total = Math.random() * 10000 + 5000;
 
 			self.tm.createTask({
 				duration: total,
@@ -125,7 +101,7 @@ KISSY.add(function(S, require) {
 
 				},
 				onTimeUpdate: function(t) {
-					self.get('node').css('transform', 'rotateX(' + (self.elasticBoth(t / total) * toDeg + self.get('deg')) + 'deg)');
+					self.get('node').css('transform', 'rotateX(' + (self.swing(t / total) * toDeg + self.get('deg')) + 'deg)');
 				},
 				onTimeEnd: function() {
 					self.get('node').css('transform', 'rotateX(' + (toDeg + self.get('deg')) + 'deg)');
