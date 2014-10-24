@@ -279,9 +279,9 @@ define(function (require, exports, module) {
                                         currentFloor: this.currentFloor,
                                         moveDir: this.moveDir
                                     });
-                                    this.moveDir = '';
                                 });
                             });
+                            this.moveDir = '';
                         }
                     }
 
