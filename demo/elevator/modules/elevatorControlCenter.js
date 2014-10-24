@@ -8,7 +8,7 @@
 define(function (require, exports, module) {
 
     var Util = require('./util'),
-        Elevator = require('./Elevator');
+        Elevator = require('./elevator');
 
     //the elevator control center class
     //constructor
