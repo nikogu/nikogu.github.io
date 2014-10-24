@@ -1,0 +1,186 @@
+.wrapper {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  width: 992px;
+}
+.wrapper h1 {
+  text-align: center;
+}
+.control-center {
+  background: #eeeeee;
+  border: 1px solid #aaaaaa;
+  overflow: hidden;
+  padding: 10px;
+  padding-bottom: 0;
+  margin: 0 auto;
+  width: 990px;
+}
+.control-center .building {
+  border: 1px solid #dddddd;
+  border-bottom: none;
+  display: block;
+  float: left;
+  padding: 0;
+  position: relative;
+  width: 328px;
+  height: 500px;
+}
+.control-center .building .elevator-panel {
+  background: #efefef;
+  border: 1px solid #dddddd;
+  padding: 20px 10px;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 120px;
+}
+.control-center .building .elevator-panel p {
+  font-size: 12px;
+  padding: 0;
+  padding-bottom: 5px;
+  margin: 0;
+  text-align: center;
+}
+.control-center .building .elevator-panel ul {
+  *zoom: 1;
+  padding: 0;
+  margin: 0;
+}
+.control-center .building .elevator-panel ul:before,
+.control-center .building .elevator-panel ul:after {
+  content: " ";
+  display: table;
+}
+.control-center .building .elevator-panel ul:after {
+  clear: both;
+}
+.control-center .building .elevator-panel ul li {
+  background-color: #dedede;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  display: block;
+  float: left;
+  padding: 3px;
+  position: relative;
+  margin: -1px 0 0 -1px;
+  height: 32px;
+  line-height: 32px;
+  width: 32px;
+  text-align: center;
+}
+.control-center .building .elevator-panel ul li:hover {
+  background-color: #ffffff;
+}
+.control-center .building .elevator-panel ul .active {
+  border-color: darkred;
+  background-color: #ffffff;
+  z-index: 1;
+}
+.control-center .building .floor {
+  background: #ffffff;
+  border-bottom: 1px solid #dddddd;
+  display: block;
+  position: relative;
+  height: 49px;
+  width: 100%;
+}
+.control-center .building .floor .num {
+  position: absolute;
+  right: 10px;
+}
+.control-center .building .floor .door {
+  background: #fffff0;
+  border: 1px solid #dddddd;
+  border-bottom: none;
+  position: absolute;
+  left: 50%;
+  margin-left: -1px;
+  bottom: 0;
+  width: 36px;
+  height: 39px;
+}
+.control-center .building .floor .cover {
+  background-color: #ffffff;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  z-index: 1;
+  height: 8px;
+  width: 36px;
+}
+.control-center .building .floor .control {
+  border: 1px solid #dddddd;
+  border-top: none;
+  border-bottom: none;
+  padding: 5px;
+  position: absolute;
+  bottom: 0;
+  right: 90px;
+}
+.control-center .building .floor .control i {
+  cursor: pointer;
+  display: block;
+  padding: 2px;
+  position: relative;
+  font-size: 12px;
+  width: 13px;
+  height: 13px;
+  line-height: 13px;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.control-center .building .floor .control i:hover {
+  background-color: darkred;
+  color: #ffffff;
+}
+.control-center .building .floor .control i:after {
+  content: '<';
+}
+.control-center .building .floor .control .down {
+  border-left: 1px solid #dddddd;
+}
+.control-center .building .floor .control .down:after {
+  content: '>';
+}
+.control-center .building .floor .control .active {
+  background-color: darkred;
+  color: #ffffff;
+}
+.light {
+  background-color: #aaaaaa;
+  border: 1px solid #dddddd;
+  border-top: none;
+  color: red;
+  display: block;
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 0px;
+  margin-left: -65px;
+  width: 60px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+.elevator {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 36px;
+  height: 40px;
+}
+.elevator i {
+  background-color: #dddddd;
+  display: block;
+  position: absolute;
+  width: 50%;
+  left: -1px;
+  height: 100%;
+}
+.elevator .r {
+  left: auto;
+  right: 0px;
+}
