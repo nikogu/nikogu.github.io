@@ -21,6 +21,7 @@
   padding: 10px;
   padding-bottom: 0;
   margin: 0 auto;
+  min-height: 513px;
   width: 990px;
 }
 .control-center .building {

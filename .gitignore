@@ -1,0 +1,15 @@
+tmp/
+temp/
+
+desktop.ini
+*.db    
+
+.dropbox.cache/
+.svn/
+.idea/
+
+*.log
+node_modules/
+webapp/
+
+*.DS_Store
