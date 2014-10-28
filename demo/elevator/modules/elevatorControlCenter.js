@@ -79,6 +79,8 @@ define(function (require, exports, module) {
                         that.clearCall(o.currentFloor, 'up');
                         that.clearCall(o.currentFloor, 'down');
 
+                        console.log(1);
+
                         that._manageCall();
                     });
 
@@ -128,30 +130,51 @@ define(function (require, exports, module) {
                 return;
             }
 
-            var elevator;
+            var elevator,
+                inTarget = false;
 
             //up list
             for (var i = 0; i < that.calllist.up.length; i++) {
-                elevator = that._selectElevator(that.calllist.up[i], 'up');
-                if (elevator) {
-                    elevator._addToTargetList(that.calllist.up[i], false, function () {
-                        //that._removeFromCallList(that.calllist.up[i], 'up');
-                    });
-                    if (elevator.targetFloors.length == 1 && elevator.status == 'stop') {
-                        elevator.move();
+                //if is also in target list , ignore it
+                inTarget = false;
+                for (var k = that.elevators.length; k--;) {
+                    if (Util.arrayGetIndex(that.elevators[k].targetFloors, that.calllist.up[i]) !== undefined ) {
+                        inTarget = true;
+                        break;
+                    }
+                }
+                if (!inTarget) {
+                    elevator = that._selectElevator(that.calllist.up[i], 'up');
+                    if (elevator) {
+                        elevator._addToTargetList(that.calllist.up[i], false, function () {
+                            //that._removeFromCallList(that.calllist.up[i], 'up');
+                        });
+                        if (elevator.targetFloors.length == 1 && elevator.status == 'stop') {
+                            elevator.move();
+                        }
                     }
                 }
             }
 
             //down list
             for (var j = 0; j < that.calllist.down.length; j++) {
-                elevator = that._selectElevator(that.calllist.down[j], 'down');
-                if (elevator) {
-                    elevator._addToTargetList(that.calllist.down[j], false, function () {
-                        //that._removeFromCallList(that.calllist.down[j], 'down');
-                    });
-                    if (elevator.targetFloors.length == 1 && elevator.status == 'stop') {
-                        elevator.move();
+                //if is also in target list , ignore it
+                inTarget = false;
+                for (var k = that.elevators.length; k--;) {
+                    if (Util.arrayGetIndex(that.elevators[k].targetFloors, that.calllist.up[j]) !== undefined ) {
+                        inTarget = true;
+                        break;
+                    }
+                }
+                if (!inTarget) {
+                    elevator = that._selectElevator(that.calllist.down[j], 'down');
+                    if (elevator) {
+                        elevator._addToTargetList(that.calllist.down[j], false, function () {
+                            //that._removeFromCallList(that.calllist.down[j], 'down');
+                        });
+                        if (elevator.targetFloors.length == 1 && elevator.status == 'stop') {
+                            elevator.move();
+                        }
                     }
                 }
             }

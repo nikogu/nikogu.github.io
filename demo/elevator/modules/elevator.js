@@ -101,7 +101,7 @@ define(function (require, exports, module) {
                     this._setTargetFloor();
                 }
             } else if (this.moveDir == 'down') {
-                this.nextFloor = Util.arrayGetPrev(this.targetFloors, this.currentFloor);
+                this.nextFloor = Util.arrayGetPrev(this.targetFloors, this.currentFloor+1);
 
                 //prev is none
                 //need check reversal
