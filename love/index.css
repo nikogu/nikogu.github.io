@@ -17,6 +17,7 @@ body {
   line-height: 1.5;
 }
 .swiper-container {
+  opacity: 0;
   color: #fff;
   width: 320px;
   height: 568px;
@@ -45,6 +46,7 @@ body {
   position: relative;
 }
 .swiper-slide .time {
+  font-family: 'Indie Flower', 'Comic Sans MS';
   color: #ffffff;
   font-size: 40px;
   position: absolute;
@@ -97,13 +99,16 @@ body {
   margin-left: -20px;
 }
 #loading {
-  background: #d35400;
   position: absolute;
-  width: 320px;
-  height: 568px;
+  top: 220px;
+  left: 50%;
+  margin-left: -100px;
+  height: 200px;
+  width: 200px;
   z-index: 999;
 }
 #logo {
+  font-family: 'Indie Flower', 'Comic Sans MS';
   position: absolute;
   left: 136px;
   bottom: 121px;

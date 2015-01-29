@@ -166,6 +166,8 @@
 
     loader.onload(function() {
 
+        $('.swiper-container').css('opacity', 1);
+
         //主程序
         var loadingNode = $('#loading');
         var isCanGoTo = true;

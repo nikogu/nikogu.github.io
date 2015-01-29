@@ -1,5 +1,5 @@
 .spinner {
-    margin: 200px auto;
+    margin: 0px auto;
     width: 50px;
     height: 30px;
     text-align: center;
@@ -7,7 +7,7 @@
 }
 
 .spinner > div {
-    background-color: #ffffff;
+    background-color: #ff513c;
     height: 100%;
     width: 6px;
     display: inline-block;

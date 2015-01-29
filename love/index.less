@@ -37,6 +37,7 @@ body {
 }
 
 .swiper-container {
+    opacity: 0;
     color: #fff;
     width: @width;
     height: @height;
@@ -69,6 +70,7 @@ body {
 .swiper-slide {
     position: relative;
     .time {
+        font-family: 'Indie Flower', 'Comic Sans MS';
         color: #ffffff;
         font-size: 40px;
         position: absolute;
@@ -118,14 +120,17 @@ body {
 
 //loading
 #loading {
-    background: #d35400;
     position: absolute;
-    width: @width;
-    height: @height;
+    top: 220px;
+    left: 50%;
+    margin-left: -100px;
+    height: 200px;
+    width: 200px;
     z-index: 999;
 }
 
 #logo {
+    font-family: 'Indie Flower', 'Comic Sans MS';
     position: absolute;
     left: 136px;
     bottom: 121px;
