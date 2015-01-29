@@ -1,0 +1,118 @@
+@import "css/swipe.css";
+@import "css/loading.css";
+@import "css/next.css";
+@font-face {
+  font-family: 'Indie Flower';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Indie Flower'), local('IndieFlower'), url(myfont.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* Demo Styles */
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Indie Flower', 'SimHei', Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.swiper-container {
+  color: #fff;
+  width: 320px;
+  height: 568px;
+  text-align: center;
+}
+.red-slide {
+  background: #ca4040;
+}
+.blue-slide {
+  background: #4390ee;
+}
+.orange-slide {
+  background: #ff8604;
+}
+.pink-slide {
+  background: #ff5dc2;
+}
+.white-slide {
+  background: #ffe;
+  color: #676767;
+}
+.white-slide .time {
+  color: #676767 !important;
+}
+.swiper-slide {
+  position: relative;
+}
+.swiper-slide .time {
+  color: #ffffff;
+  font-size: 40px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.swiper-slide p {
+  font-size: 13px;
+}
+.swiper-slide .article {
+  padding-left: 40px;
+  margin-top: 100px;
+  text-align: left;
+}
+.swiper-slide .article span {
+  -moz-transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+  display: block;
+  opacity: 0;
+  margin-bottom: 8px;
+}
+.swiper-slide .article span b {
+  font-size: 18px;
+  font-weight: normal;
+  padding: 0 4px;
+  color: #ff513c;
+}
+.swiper-slide .article span img {
+  border: 2px solid #ffffff;
+}
+.swiper-slide .tips {
+  margin-top: 30px;
+  text-align: left;
+  padding: 0 40px;
+  width: 240px;
+}
+.swiper-slide .next {
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  margin-left: -20px;
+}
+#loading {
+  background: #d35400;
+  position: absolute;
+  width: 320px;
+  height: 568px;
+  z-index: 999;
+}
+#logo {
+  position: absolute;
+  left: 136px;
+  bottom: 121px;
+  font-size: 35px;
+}
+#jiayi {
+  transform: scale(0.4) rotate(10deg);
+  -webkit-transform: scale(0.4) rotate(10deg);
+  position: absolute;
+  left: -162px;
+  bottom: -188px;
+}
