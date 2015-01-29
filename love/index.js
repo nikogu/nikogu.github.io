@@ -43,7 +43,7 @@
             article = slide.find('.article'),
             nextNode = slide.find('.next');
 
-        $('#J_time-1').typeTo('2015 1 17');
+        $('#J_time-1').typeTo('2015.1.17');
 
         var duration = 1500;
 
@@ -69,7 +69,7 @@
             article = slide.find('.article'),
             nextNode = slide.find('.next');
 
-        $('#J_time-2').typeTo('2015 1 18');
+        $('#J_time-2').typeTo('2015.1.18');
 
         var t = 2000,
             duration = 1000,
@@ -100,7 +100,7 @@
             article = slide.find('.article'),
             nextNode = slide.find('.next');
 
-        $('#J_time-3').typeTo('2015 1 24');
+        $('#J_time-3').typeTo('2015.1.24');
 
         var t = 2000,
             duration = 1000,

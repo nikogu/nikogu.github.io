@@ -9,7 +9,13 @@
 <body>
 
 <div id="loading">
-    <div class="spinner"></div>
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
 </div>
 
 <div class="swiper-container">
@@ -102,6 +108,15 @@
 </div>
 
 <script src="./lib/jquery.js"></script>
+<script>
+    var _w = $(window).width(),
+        _h = $(window).height();
+
+    $('.swiper-container').css({
+        width: _w,
+        height: _h
+    });
+</script>
 <script src="./lib/jquery.typer.js"></script>
 <script src="./lib/loader.js"></script>
 <script src="./lib/heard.js"></script>
