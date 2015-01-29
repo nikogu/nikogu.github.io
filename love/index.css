@@ -3,7 +3,7 @@
 @import "css/next.css";
 @font-face {
   font-family: 'Indie Flower';
-  src: url('myfont.woff2') format('woff2'), url('myfont.ttf') format('truetype');
+  src: url('myfont.ttf') format('truetype'), url('myfont.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
