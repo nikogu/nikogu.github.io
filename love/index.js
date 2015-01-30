@@ -39,27 +39,28 @@
 
     //1
     flowExec.push(function() {
-        var slide = $('.swiper-slide').eq(0),
-            article = slide.find('.article'),
-            nextNode = slide.find('.next');
+        setTimeout(function() {
+            var slide = $('.swiper-slide').eq(0),
+                article = slide.find('.article'),
+                nextNode = slide.find('.next');
 
-        $('#J_time-1').typeTo('2015.1.17');
+            $('#J_time-1').typeTo('2015.1.17');
 
-        var duration = 1500;
+            var duration = 2000;
 
-        var t = 2000,
-            spans = article.find('span');
+            var t = 2000,
+                spans = article.find('span');
 
-        spans.each(function(index, item) {
-            setTimeout(function() {
-                $(item).css('opacity', 1);
-                if ( index == spans.length-1 ) {
-                    nextNode.css('opacity', 1);
-                }
-            }, t);
-            t += duration;
-        });
-
+            spans.each(function(index, item) {
+                setTimeout(function() {
+                    $(item).css('opacity', 1);
+                    if ( index == spans.length-1 ) {
+                        nextNode.css('opacity', 1);
+                    }
+                }, t);
+                t += duration;
+            });
+        }, 500);
     });
 
     //2
@@ -161,7 +162,8 @@
     var loader = new Loader();
     loader.add({
         'img1': './res/a.jpg',
-        'img2': './res/hobit.png'
+        'img2': './res/hobit.png',
+        'img3': './res/panda.gif'
     });
 
     loader.onload(function() {

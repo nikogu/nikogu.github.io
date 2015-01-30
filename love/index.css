@@ -111,6 +111,13 @@ body {
   bottom: 121px;
   font-size: 35px;
 }
+#panda {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  width: 50px;
+}
 #jiayi {
   transform: scale(0.4) rotate(10deg);
   -webkit-transform: scale(0.4) rotate(10deg);
