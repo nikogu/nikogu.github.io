@@ -169,7 +169,6 @@
 
     loader.onload(function() {
 
-        $('#song')[0].play();
 
         $('.swiper-container').css('opacity', 1);
 
@@ -206,6 +205,9 @@
     });
     loader.load();
 
+    $('#song')[0].addEventListener('canplaythrough', function() {
+        $('#song')[0].play();
+    }, false);
 
 })();
 
