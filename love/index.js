@@ -205,9 +205,7 @@
     });
     loader.load();
 
-    $('#song')[0].addEventListener('canplaythrough', function() {
-        $('#song')[0].play();
-    }, false);
+    $('#song')[0].play();
 
 })();
 
