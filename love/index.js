@@ -163,10 +163,13 @@
     loader.add({
         'img1': './res/a.jpg',
         'img2': './res/hobit.png',
-        'img3': './res/panda.gif'
+        'img3': './res/panda.gif',
+        'song': './res/song.mp3'
     });
 
     loader.onload(function() {
+
+        $('#song')[0].play();
 
         $('.swiper-container').css('opacity', 1);
 
@@ -202,6 +205,7 @@
         }
     });
     loader.load();
+
 
 })();
 
