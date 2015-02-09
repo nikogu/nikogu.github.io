@@ -163,8 +163,7 @@
     loader.add({
         'img1': './res/a.jpg',
         'img2': './res/hobit.png',
-        'img3': './res/panda.gif',
-        'song': './res/song.mp3'
+        'img3': './res/panda.gif'
     });
 
     loader.onload(function() {
@@ -205,7 +204,9 @@
     });
     loader.load();
 
-    $('#song')[0].play();
+    $('#song')[0].addEventListener('canplaythrough', function() {
+        $('#song')[0].play();
+    }, false);
 
 })();
 
