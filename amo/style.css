@@ -9,9 +9,15 @@ body {
   src: local('Indie Flower'), local('IndieFlower'), url(font.woff2) format('woff2');
 }
 .container {
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   position: relative;
   margin: 40px auto 80px auto;
   width: 1200px;
+  opacity: 0;
 }
 #logo {
   font-family: 'Indie Flower', 'arial', 'sans-serif';
