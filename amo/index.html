@@ -7,36 +7,161 @@
     <link rel="stylesheet" href="./style.css"/>
 </head>
 <body>
+
 <div class="container">
-    <h1 id="logo">amo.js</h1>
-
-    <p>A javascript library for CSS3 animation.</p>
-
-    <div class="enter">
-        <a class="btn-github" target="_blank"
-           href="https://github.com/nikogu/amo">Github</a>
+    <div id="logo">
+        <h1>amo.js</h1>
+        <p>- A javascript library for creating CSS3 animation. -</p>
     </div>
+    <div class="code-list">
 
-    <div id="clarinet">
-        <div class="item" style="background-color: #ff4056;"></div>
-        <div class="item" style="background-color: #51c1ff;"></div>
-        <div class="item" style="background-color: #ff8462;"></div>
-        <div class="item" style="background-color: #7ae2db;"></div>
-        <div class="item" style="background-color: #ffff00;"></div>
-        <div class="item" style="background-color: #888888;"></div>
-        <div class="item" style="background-color: #ff513c"></div>
-        <div class="item" style="background-color: #52eeff"></div>
-        <div class="item" style="background-color: #ffa2fc"></div>
-        <div class="item" style="background-color: #ffd956"></div>
-        <div class="item" style="background-color: #ff30f3"></div>
-        <div class="item" style="background-color: #3072ff"></div>
+
+        <div class="code-item">
+            <div class="demo">
+                <div id="demo-1"></div>
+            </div>
+            <div id="code-1" class="code">//create keyframes
+var rotateAnim = Amo.keyframes({
+    '-webkit-transform': 'rotate(0deg)',
+    'transform': 'rotate(0deg)'
+}, {
+   '-webkit-transform': 'rotate(360deg)',
+    'transform': 'rotate(360deg)'
+//create animate
+}).animate({
+    // animation iteration count
+    time: -1,
+    // animation timing function
+    easing: 'linear'
+});
+//run animate & return animate instance
+rotateAnim.run(document.getElementById('demo-1'));
+            </div>
+            <div class="operate">
+                <a class="btn-start" data-anim="demo1Ins">&gt; Start</a>
+                <a class="btn-stop" data-anim="demo1Ins">&gt; Stop</a>
+                <a class="btn-reset" data-anim="demo1Ins">&gt; Reset</a>
+            </div>
+        </div>
+
+
+        <div class="code-item">
+            <div class="demo">
+                <div id="demo-2"></div>
+            </div>
+            <div id="code-2" class="code">//create keyframes
+var moveAnim = Amo.keyframes({
+    left: '20px'
+}, {
+    left: '480px'
+}).animate({
+    time: -1,
+    // animation-direction: normal|alternate;
+    direction: 'alternate'
+});
+
+// animation instance
+var moveAnimIns = moveAnim.run($('#demo-2'));
+$('#btn-start').on('click', function(){
+    // start the animation instance
+    moveAnimIns.start();
+});
+$('#btn-stop').on('click', function(){
+    // stop the animation instance
+    moveAnimIns.stop();
+});
+            </div>
+            <div class="operate">
+                <a class="btn-start" data-anim="demo2Ins">&gt; Start</a>
+                <a class="btn-stop" data-anim="demo2Ins">&gt; Stop</a>
+                <a class="btn-reset" data-anim="demo2Ins">&gt; Reset</a>
+            </div>
+        </div>
+
+
+        <div class="code-item">
+            <div class="demo">
+                <div id="demo-3"></div>
+            </div>
+            <div id="code-3" class="code">//create keyframes
+var sizeAnim = Amo.keyframes({
+    'border-radius': '10px',
+    width: '10px',
+    height: '10px'
+}, {
+    'border-radius': '120px',
+    width: '120px',
+    height: '120px'
+}).animate({
+    //animate times
+    time: 5,
+    //animate duration at one time
+    duration: 800,
+    direction: 'alternate'
+});
+
+//callback
+sizeAnim.run($('#demo-3'), function() {
+    $('#demo-3').css('background', '#ddd');
+});
+            </div>
+            <div class="operate">
+                <a class="btn-start" data-anim="demo3Ins">&gt; Start</a>
+                <a class="btn-stop" data-anim="demo3Ins">&gt; Stop</a>
+                <a class="btn-reset" data-anim="demo3Ins">&gt; Reset</a>
+            </div>
+        </div>
+
+
+        <div class="code-item">
+            <div class="demo">
+                <div class="demo-4"></div>
+                <div class="demo-4"></div>
+                <div class="demo-4"></div>
+                <div class="demo-4"></div>
+            </div>
+            <div id="code-4" class="code">//create keyframes
+var colorAnim = Amo.keyframes({
+    0: {
+        'background-color': 'red'
+    },
+    20: {
+       'background-color': 'green'
+    },
+    50: {
+       'background-color': 'blue'
+    },
+    80: {
+       'background-color': 'yellow'
+    },
+    100: {
+       'background-color': 'gray'
+    }
+}).animate({
+    time: -1,
+    direction: 'alternate'
+});
+
+var demo4Ins = colorAnim.run($('.demo-4'));
+            </div>
+            <div class="operate">
+                <a class="btn-start" data-anim="demo4Ins">&gt; Start</a>
+                <a class="btn-stop" data-anim="demo4Ins">&gt; Stop</a>
+                <a class="btn-reset" data-anim="demo4Ins">&gt; Reset</a>
+            </div>
+        </div>
+
+
     </div>
-
-    <div id="runner" class="runner"></div>
+    <div id="footer">2014-2015 &copy; amo.js create by <a href="http://nikogu.github.io/" target="_blank">niko</a></div>
 </div>
 
-<div id="footer">2014-2015 &copy; amo.js create by niko</div>
+<a id="to-github" target="_blank" href="https://github.com/nikogu/amo">
+    <img src="./github.png" alt="fork me"/>
+</a>
 
+<script src="./bower_components/ace-builds/src-noconflict/ace.js"></script>
+<script src="./jquery.js"></script>
 <script src="./amo.js"></script>
 <script src="./index.js"></script>
 

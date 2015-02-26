@@ -1,122 +1,112 @@
 body {
   background: #ffffff url('http://gtms01.alicdn.com/tps/i1/TB1hkNfHXXXXXXSXpXXu5HwJFXX-8-8.png') repeat 0 0;
 }
+/* latin */
+@font-face {
+  font-family: 'Indie Flower';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Indie Flower'), local('IndieFlower'), url(font.woff2) format('woff2');
+}
 .container {
-  padding: 80px 0 20px 0;
   position: relative;
-  margin: 0 auto;
-  width: 990px;
-  text-align: center;
-}
-.container h1 {
-  font-size: 60px;
-}
-.container p {
-  color: #999999;
-  font-size: 13px;
-}
-.container .enter {
-  margin-top: 60px;
-}
-.container .btn {
-  padding-left: 30px;
-  padding-right: 30px;
-  margin: 0 10px;
-}
-.container .syntaxhighlighter {
-  padding: 10px;
-}
-.container .syntaxhighlighter .string,
-.container .syntaxhighlighter .string a {
-  color: #3dc400 !important;
-}
-.container .syntaxhighlighter .keyword {
-  color: #0050cf !important;
-}
-.container .syntaxhighlighter .plain,
-.container .syntaxhighlighter .plain a {
-  color: #676767 !important;
-}
-.container .syntaxhighlighter .comments,
-.container .syntaxhighlighter .comments a {
-  color: #bababa !important;
+  margin: 40px auto 80px auto;
+  width: 1200px;
 }
 #logo {
+  font-family: 'Indie Flower', 'arial', 'sans-serif';
+  text-align: center;
+}
+#logo h1 {
+  color: #20aeff;
+  font-size: 80px;
   padding: 0;
   margin: 0;
 }
-#code {
-  margin: 40px auto;
-  min-height: 400px;
-  width: 600px;
+#logo p {
+  color: #888888;
+  font-size: 13px;
 }
-#clarinet {
-  position: fixed;
-  top: 100px;
-  left: 0;
-}
-#clarinet .item {
-  background-color: #000000;
-  margin: 5px 0;
-  display: block;
-  height: 20px;
-  width: 100px;
-}
-.btn-github {
-  background-image: -webkit-linear-gradient(top, #5bc0de 0, #2aabd2 100%);
-  background-image: -o-linear-gradient(top, #5bc0de 0, #2aabd2 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#5bc0de), to(#2aabd2));
-  background-image: linear-gradient(to bottom, #5bc0de 0, #2aabd2 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2aabd2', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-  color: #fff;
-  background-color: #5bc0de;
-  border-color: #46b8da;
-  background-repeat: repeat-x;
-  border-color: #28a4c9;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+.code-list .code-item {
+  background-color: #ffffff;
+  border: 1px dashed #eeeeee;
   display: inline-block;
-  padding: 6px 42px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  text-decoration: none;
+  padding: 10px;
+  margin: 10px;
+  width: 556px;
 }
-.btn-github:hover {
-  opacity: 0.9;
+.code-list .code-item .demo {
+  border-bottom: 1px solid #efefef;
+  height: 149px;
+  position: relative;
+  text-align: center;
+}
+.code-list .code-item .code {
+  overflow-y: scroll;
+  height: 200px;
+}
+.code-list .code-item .operate a {
+  font-family: 'Indie Flower', 'arial', 'sans-serif';
+  background-color: transparent;
+  border: none;
+  color: #888888;
+  cursor: pointer;
+  font-size: 13px;
+}
+.code-list .code-item .operate a:hover {
+  text-decoration: underline;
 }
 #footer {
+  font-family: 'Indie Flower', 'arial', 'sans-serif';
   color: #aeaeae;
   font-size: 12px;
   position: absolute;
-  bottom: 10px;
+  bottom: -60px;
   left: 50%;
   margin-left: -100px;
   width: 200px;
   text-align: center;
 }
-#runner {
-  background: #ff5d3e;
-  opacity: 0.8;
+#footer a {
+  color: #20aeff;
+}
+#demo-1 {
+  background-color: #ff392a;
+  display: block;
   position: absolute;
-  top: 60px;
-  left: 600px;
-  height: 20px;
-  width: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+  width: 50px;
+  height: 50px;
+}
+#demo-2 {
+  background-color: #3cdd28;
+  border-radius: 50px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+  width: 50px;
+  height: 50px;
+}
+#demo-3 {
+  background-color: #20aeff;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+}
+.demo-4 {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+#to-github {
+  position: fixed;
+  top: 0;
+  right: 0;
 }

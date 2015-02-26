@@ -1,55 +1,112 @@
-var rotateAnim = Amo.keyframes({
-    '-webkit-transform': 'rotate(0deg)'
-}, {
-    '-webkit-transform': 'rotate(360deg)'
-}).animate({
-    duration: 5000,
-    easing: 'linear',
-    time: -1
-});
 
-var blinkAnim = Amo.keyframes({
-    0: {
-        color: '#ff513c'
-    },
-    20: {
-        color: '#51c1ff'
-    },
-    40: {
-        color: '#8eff6b'
-    },
-    60: {
-        color: '#ffa2fc'
-    },
-    80: {
-        color: '#7ae2db'
-    },
-    100: {
-        color: '#ff8462'
-    }
-}).animate({
-    duration: 5000,
-    easing: 'linear',
-    time: -1
-});
+(function() {
 
-var items = document.getElementById('clarinet').getElementsByTagName('div');
-Array.prototype.forEach.call(items, function (item, index) {
-
-    var anim = Amo.keyframes({
-        width: (Math.random() * 50) + 'px'
+    var rotateAnim = Amo.keyframes({
+        '-webkit-transform': 'rotate(0deg)',
+        'transform': 'rotate(0deg)'
     }, {
-        width: (Math.random() * 200 + 150) + 'px'
+        '-webkit-transform': 'rotate(360deg)',
+        'transform': 'rotate(360deg)'
     }).animate({
-        duration: Math.floor(Math.random() * 1000) + 500,
-        easing: 'ease',
+        time: -1,
+        easing: 'linear'
+    });
+    var demo1Ins = rotateAnim.run(document.getElementById('demo-1'));
+
+    var code1 = ace.edit('code-1');
+    code1.setTheme('ace/theme/xcode');
+    code1.getSession().setMode("ace/mode/javascript");
+    code1.setReadOnly(true);
+
+
+    var moveAnim = Amo.keyframes({
+        left: '20px'
+    }, {
+        left: '480px'
+    }).animate({
+        time: -1,
+        // animation-direction: normal|alternate;
+        direction: 'alternate'
+    });
+    var demo2Ins = moveAnim.run($('#demo-2'));
+    var code2 = ace.edit('code-2');
+    code2.setTheme('ace/theme/xcode');
+    code2.getSession().setMode("ace/mode/javascript");
+    code2.setReadOnly(true);
+
+    var sizeAnim = Amo.keyframes({
+        'border-radius': '10px',
+        width: '10px',
+        height: '10px'
+    }, {
+        'border-radius': '120px',
+        width: '120px',
+        height: '120px'
+    }).animate({
+        //animate times
+        time: 5,
+        //once animate duration
+        duration: 800,
+        direction: 'alternate'
+    });
+
+    var demo3Ins = sizeAnim.run($('#demo-3'), function() {
+        $('#demo-3').css('background', '#ddd');
+    });
+    var code3 = ace.edit('code-3');
+    code3.setTheme('ace/theme/xcode');
+    code3.getSession().setMode("ace/mode/javascript");
+    code3.setReadOnly(true);
+
+
+    var colorAnim = Amo.keyframes({
+        0: {
+            'background-color': 'red'
+        },
+        20: {
+            'background-color': 'green'
+        },
+        50: {
+            'background-color': 'blue'
+        },
+        80: {
+            'background-color': 'yellow'
+        },
+        100: {
+            'background-color': 'gray'
+        }
+    }).animate({
         time: -1,
         direction: 'alternate'
     });
 
-    anim.run(item);
-});
+    var demo4Ins = colorAnim.run($('.demo-4'));
 
-rotateAnim.run(document.getElementById('runner'));
+    var code4 = ace.edit('code-4');
+    code4.setTheme('ace/theme/xcode');
+    code4.getSession().setMode("ace/mode/javascript");
+    code4.setReadOnly(true);
 
-blinkAnim.run(document.getElementById('logo'));
+
+    $('.btn-start').on('click', function() {
+        var target = $(this),
+            anim = target.attr('data-anim');
+
+        eval(anim+'.start()');
+    });
+    $('.btn-stop').on('click', function() {
+        var target = $(this),
+            anim = target.attr('data-anim');
+
+        eval(anim+'.stop()');
+
+    });
+    $('.btn-reset').on('click', function() {
+        var target = $(this),
+            anim = target.attr('data-anim');
+
+        eval(anim+'.reset()');
+
+    });
+
+})();
