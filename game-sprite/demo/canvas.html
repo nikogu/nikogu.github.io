@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Canvas Sprite Test</title>
+</head>
+<body>
+<p id="loading">Loading...</p>
+<canvas id="case-canvas" style="z-index: 1;position: relative" width="990" height="150"></canvas>
+<script src="../game-sprite.min.js"></script>
+<script src="../loader.js"></script>
+<script src="../data.js"></script>
+<script>
+
+    var loader = new Loader();
+    loader.add({
+        sprite: 'http://gtms03.alicdn.com/tps/i3/TB1nLrDFVXXXXaNXFXXrhejFFXX-1924-1022.png'
+    });
+    loader.onload(function (e) {
+        document.getElementById('loading').style.display = 'none';
+        init(e);
+    });
+    loader.load();
+
+    function init(res) {
+        var tm = Sprite.Timeline.use('tm').init(1000 / 60);
+
+        var canvas = document.getElementById('case-canvas'),
+                ctx = canvas.getContext('2d');
+
+        var sister = new Sprite({
+            ctx: ctx,
+            res: {
+                image: res.sprite.image,
+                json: SPRITE_DATA
+            },
+            spf: 80
+        });
+
+        sister.play('normal-fairy-run');
+        sister.set({
+            y: 30,
+            regX: sister.width / 2,
+            scaleX: -1
+        });
+
+        tm.createTask({
+            duration: -1,
+            onTimeStart: function () {
+
+            },
+            onTimeUpdate: function () {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (sister.get('x') > 990) {
+                    sister.set('x', -sister.width);
+                } else {
+                    sister.set('x', sister.get('x') + 4);
+                }
+                sister.update();
+            },
+            onTimeEnd: function () {
+
+            }
+        });
+
+    }
+</script>
+</body>
+</html>

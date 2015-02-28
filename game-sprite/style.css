@@ -1,0 +1,273 @@
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/**
+ * https://github.com/rhiokim/markdown-css
+ * solarized-light style
+ * made by rhio.kim
+ * powered by http://ethanschoonover.com/solarized
+ */
+.clearness-dark {
+  padding: 20px;
+  color: #ffffff;
+  font-size: 15px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", AppleSDGothicNeo-Medium, 'Segoe UI', 'Malgun Gothic', Verdana, Tahoma, sans-serif;
+  background: #282a36;
+  -webkit-font-smoothing: antialiased;
+}
+.clearness-dark h1 {
+  font-size: 30px;
+  line-height: 50px;
+  padding: 30px 0;
+}
+.clearness-dark h2 {
+  font-size: 24px;
+  line-height: 40px;
+  padding: 20px 0;
+}
+.clearness-dark h3 {
+  font-size: 20px;
+  line-height: 30px;
+  padding: 10px 0;
+}
+.clearness-dark h4,
+.clearness-dark h5,
+.clearness-dark h6 {
+  font-size: 16px;
+  line-height: 20px;
+}
+.clearness-dark ul {
+  padding-left: 10px;
+}
+.clearness-dark ul li {
+  padding-left: 10px;
+}
+.clearness-dark pre {
+  background-color: #000000;
+  padding: 5px;
+}
+.clearness-dark pre code {
+  color: #7cfc00;
+}
+.clearness-dark p {
+  line-height: 20px;
+  padding: 5px 0 10px 0;
+}
+.clearness-dark table {
+  margin: 20px 0;
+}
+.clearness-dark a {
+  color: #e03300;
+}
+.clearness-dark a:hover {
+  color: #ff4a14;
+}
+.clearness-dark h2 {
+  border-bottom: 1px solid #21232d;
+  line-height: 1.7em;
+}
+.clearness-dark h6 {
+  color: #a4a296;
+}
+.clearness-dark hr {
+  border: 1px solid #21232d;
+}
+.clearness-dark pre > code {
+  font-size: .9em;
+  font-family: Consolas, Inconsolata, Courier, monospace;
+}
+.clearness-dark blockquote {
+  border-left: 4px solid #121319;
+  padding: 0 15px;
+  font-style: italic;
+}
+.clearness-dark table {
+  background-color: #303241;
+}
+.clearness-dark table tr th,
+.clearness-dark table tr td {
+  border: 1px solid #4b4e65;
+}
+.clearness-dark table tr:nth-child(2n) {
+  background-color: #373a4b;
+}
+/**
+ * after less
+ */
+body {
+  background-color: #ffffff;
+  overflow-x: hidden;
+  min-height: 900px;
+}
+#sprite-content {
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  display: block;
+  opacity: 0;
+}
+#sprite-content #logo {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 1190px;
+  text-align: center;
+}
+#sprite-content #logo h1 {
+  font-family: 'Microsoft YaHei', arial tahoma, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+  position: absolute;
+  left: 50%;
+  margin-left: -595px;
+  font-size: 200px;
+  letter-spacing: 0.2em;
+  width: 1190px;
+  height: 300px;
+  line-height: 300px;
+}
+#sprite-content #logo .u,
+#sprite-content #logo .d {
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  widows: 100%;
+  height: 150px;
+}
+#sprite-content #logo .u {
+  background-color: #000;
+  color: #FFFFFF;
+}
+#sprite-content #logo .u h1 {
+  top: 0px;
+}
+#sprite-content #logo .d h1 {
+  bottom: 0px;
+}
+#sprite-content #logo:hover .d {
+  background-color: #000;
+  color: #FFFFFF;
+}
+#sprite-content #logo:hover .u {
+  background-color: #FFF;
+  color: #000;
+}
+#sprite-content #show-case {
+  border-top: 1px solid #dddddd;
+  margin: 50px auto;
+  width: 990px;
+}
+#sprite-content #show-case .case {
+  border: 1px solid #dddddd;
+  border-top: none;
+  overflow: hidden;
+  position: relative;
+  height: 150px;
+}
+#sprite-content #show-case .case .title {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+#sprite-content #show-case .case a {
+  background-color: #000000;
+  color: #ffffff;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 10;
+}
+#sprite-content #show-case .case a:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+#sprite-content #show-case .case .floor {
+  background: url("http://gtms02.alicdn.com/tps/i2/TB1Mo2IFVXXXXXBXFXXlfEI0XXX-592-67.png") repeat-x 0 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  width: 990px;
+}
+#sprite-content #show-anim {
+  *zoom: 1;
+  position: relative;
+  margin: 50px auto;
+  width: 990px;
+}
+#sprite-content #show-anim:before,
+#sprite-content #show-anim:after {
+  content: " ";
+  display: table;
+}
+#sprite-content #show-anim:after {
+  clear: both;
+}
+#sprite-content #show-anim .title {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+#sprite-content #show-anim #live-anim {
+  border: 1px solid #dddddd;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  width: 600px;
+  height: 200px;
+}
+#sprite-content #show-anim .control-panel {
+  float: right;
+  width: 350px;
+  height: 200px;
+}
+#sprite-content #show-anim .control-panel .c-btn {
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  color: #999999;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+  height: 20px;
+  line-height: 20px;
+  text-align: left;
+}
+#sprite-content #show-anim .control-panel .c-btn:hover {
+  text-decoration: underline;
+}
+#sprite-content #show-anim .control-panel .c-btn-active {
+  color: #000000;
+}
+#sprite-content #doc {
+  margin: 100px auto;
+  min-height: 500px;
+  width: 990px;
+}
+#footer {
+  color: #aaaaaa;
+  padding: 50px 0;
+  margin: 0 auto;
+  width: 990px;
+  text-align: center;
+}
+#loading-content {
+  color: #aaaaaa;
+  margin: 0 auto;
+  font-size: 20px;
+  width: 990px;
+  line-height: 200px;
+  min-height: 500px;
+  text-align: center;
+}

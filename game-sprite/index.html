@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Gama Sprite</title>
+    <link rel="stylesheet" href="http://g.tbcdn.cn/??tb/global/3.0.8/global-min.css"/>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+    <div id="loading-content">
+        LOADING...
+    </div>
+    <div id="sprite-content">
+        <div id="logo">
+            <div class="u">
+                <h1>SPRITE</h1>
+            </div>
+            <div class="d">
+                <h1>SPRITE</h1>
+            </div>
+        </div>
+        <div id="show-case">
+            <div class="case">
+                <p class="title">DOM</p>
+                <a target="_blank" href="./demo/dom.html">source</a>
+                <div class="floor"></div>
+                <div id="case-dom" style="z-index: 1;position: relative"></div>
+            </div>
+            <div class="case">
+                <p class="title">CANVAS</p>
+                <a target="_blank" href="./demo/canvas.html">source</a>
+                <div class="floor"></div>
+                <canvas id="case-canvas" style="z-index: 1;position: relative" width="990" height="150"></canvas>
+            </div>
+            <div class="case">
+                <p class="title">SNAP</p>
+                <a target="_blank" href="./demo/snap.html">source</a>
+                <div class="floor"></div>
+                <svg id="case-snap" width="990" height="150" style="z-index: 1;position: relative"></svg>
+            </div>
+        </div>
+        <div id="show-anim">
+            <p class="title">Sprite Animation</p>
+            <div id="live-anim"></div>
+            <div class="control-panel">
+                <div class="c-btn c-btn-active" data-control="1">Stand</div>
+                <div class="c-btn" data-control="2">Running</div>
+                <div class="c-btn" data-control="3">Jumping</div>
+                <div class="c-btn" data-control="4">Fear</div>
+                <div class="c-btn" data-control="5">Serial Animation</div>
+            </div>
+        </div>
+        <div id="doc" class="clearness-dark"></div>
+    </div>
+    <div id="footer">2014-2015 &copy; game-sprite.js create by <a href="http://nikogu.github.io/" target="_blank">niko</a></div>
+    <script src="./jquery.js"></script>
+    <script src="./snap.js"></script>
+    <script src="./game-sprite.min.js"></script>
+    <script src="./loader.js"></script>
+    <script src="./marked.js"></script>
+    <script src="./data.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
