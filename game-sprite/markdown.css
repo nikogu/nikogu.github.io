@@ -12,10 +12,10 @@
  */
 .clearness-dark {
   padding: 20px;
-  color: #ffffff;
+  color: #454545;
   font-size: 15px;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", AppleSDGothicNeo-Medium, 'Segoe UI', 'Malgun Gothic', Verdana, Tahoma, sans-serif;
-  background: #282a36;
+  background: #dfdfdf;
   -webkit-font-smoothing: antialiased;
 }
 .clearness-dark h1 {
@@ -46,11 +46,11 @@
   padding-left: 10px;
 }
 .clearness-dark pre {
-  background-color: #000000;
+  background-color: #ffffff;
   padding: 5px;
 }
 .clearness-dark pre code {
-  color: #7cfc00;
+  color: #1e1e1e;
 }
 .clearness-dark p {
   line-height: 20px;
@@ -85,14 +85,14 @@
   font-style: italic;
 }
 .clearness-dark table {
-  background-color: #303241;
+  background-color: #ffffff;
 }
 .clearness-dark table tr th,
 .clearness-dark table tr td {
-  border: 1px solid #4b4e65;
+  border: 1px solid #cccccc;
 }
 .clearness-dark table tr:nth-child(2n) {
-  background-color: #373a4b;
+  background-color: #ffffff;
 }
 /**
  * after less
