@@ -2,10 +2,8 @@
 (function() {
 
     var rotateAnim = Amo.keyframes({
-        '-webkit-transform': 'rotate(0deg)',
         'transform': 'rotate(0deg)'
     }, {
-        '-webkit-transform': 'rotate(360deg)',
         'transform': 'rotate(360deg)'
     }).animate({
         time: -1,
@@ -20,9 +18,9 @@
 
 
     var moveAnim = Amo.keyframes({
-        left: '20px'
+        left: '20'
     }, {
-        left: '480px'
+        left: '480'
     }).animate({
         time: -1,
         // animation-direction: normal|alternate;
@@ -35,13 +33,13 @@
     code2.setReadOnly(true);
 
     var sizeAnim = Amo.keyframes({
-        'border-radius': '10px',
-        width: '10px',
-        height: '10px'
+        'border-radius': 10,
+        width: 10,
+        height: 10
     }, {
-        'border-radius': '120px',
-        width: '120px',
-        height: '120px'
+        'border-radius': 120,
+        width: 120,
+        height: 120
     }).animate({
         //animate times
         time: 5,
