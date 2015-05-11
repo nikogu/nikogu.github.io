@@ -44,7 +44,7 @@
                 article = slide.find('.article'),
                 nextNode = slide.find('.next');
 
-            $('#J_time-1').typeTo('2015.1.17');
+            $('#J_time-1').typeTo('2015.4.12');
 
             var duration = 2000;
 
@@ -70,14 +70,14 @@
             article = slide.find('.article'),
             nextNode = slide.find('.next');
 
-        $('#J_time-2').typeTo('2015.1.18');
+        $('#J_time-2').typeTo('2015.4.13');
 
         var t = 2000,
             duration = 1000,
             spans = article.find('span');
 
         setTimeout(function() {
-            setStep(18, 23, $('#J_time-2'));
+            setStep(14, 25, $('#J_time-2'));
         }, t+100);
         spans.each(function(index, item) {
             setTimeout(function() {
@@ -101,7 +101,7 @@
             article = slide.find('.article'),
             nextNode = slide.find('.next');
 
-        $('#J_time-3').typeTo('2015.1.24');
+        $('#J_time-3').typeTo('2015.5.10');
 
         var t = 2000,
             duration = 1000,
@@ -141,7 +141,7 @@
                 if ( index == spans.length-1 ) {
                     window._love();
                     setTimeout(function() {
-                        $('#logo').typeTo('love 7。');
+                        $('#logo').typeTo('love chen');
                     }, 4500);
                 }
             }, t);
