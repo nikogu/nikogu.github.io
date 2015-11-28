@@ -1,0 +1,30 @@
+@import 'reset.css';
+.wrapper {
+  margin: 0 auto;
+  position: relative;
+  width: 1200px;
+}
+.header {
+  background-color: #444;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+}
+.header .nav {
+  line-height: 60px;
+  height: 60px;
+  width: 100%;
+  font-size: 13px;
+}
+.header .nav li {
+  display: inline-block;
+}
+.header .nav li a {
+  color: #fff;
+  display: inline-block;
+  text-decoration: none;
+  width: 100px;
+  text-align: center;
+}
+.header .nav li a:hover {
+  opacity: 0.8;
+}
