@@ -11,23 +11,13 @@
 	var c = confirm;
 
 	function over() {
-		document.write('<p style="marginTop: 20px;text-align:center">真是个无聊的程序...</p>')
+		document.write('<p style="marginTop: 20px;text-align:center">好吧，真是个无聊的程序...</p>')
 		document.write('<p style="text-align:center"><span style="color:red">\u2665</span> 雯莉</p>')
 	}
 
 	if(c('今天上班是不是很累？')) {
 
-		if(c('那你今天心情是不是还不错？')) {
-
-			if(c('今天有想你们家志豪么？')) {
-				alert('嘿嘿，志豪'+' \u2665 '+'雯莉');
-				over();
-			} else {
-				alert('好吧，不过没事，志豪有想你 *^_^* 哈哈');
-				over();
-			}
-
-		} else {
+		if(c('辛苦雯莉啦，那你今天心情会不好吗？')) {
 
 			alert('没事哒，心情不好才会心情好 ~_~ ');
 
@@ -39,22 +29,36 @@
 				over();
 			}
 
+		} else {
+
+			if(c('心情好帮帮哒，那今天有想你们家志豪么？')) {
+				alert('嘿嘿，我就知道～～');
+				alert('志豪'+' \u2665 '+'雯莉');
+				over();
+			} else {
+				alert('好吧，不过没事，志豪有想你 *^_^* 哈哈');
+				over();
+			}
+
+
 		}
 
 	} else {
 
-		if(c('摸摸，那你今天心情好不好？')) {
+		if(c('嘿嘿，那就好，那你今天心情好不好？')) {
 
-			if(c('今天有想你们家志豪么？')) {
+			if(c('那你今天有想你们家志豪么？')) {
+				alert('嘿嘿，我就知道～～');
 				alert('志豪'+' \u2665 '+'雯莉');
 				over();
 			} else {
-				alert('没事，志豪有想你 *^_^* ');
+				alert('没事没事，志豪有想你 *^_^* ');
 				over();
 			}
 
 		} else {
 			alert('没事哒，心情不好才会心情好 ~_~ ');
+			alert('而且无论你心情好不好我都在，哈哈哈');
 			over();
 		}
 	}
