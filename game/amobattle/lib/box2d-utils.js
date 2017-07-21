@@ -132,7 +132,7 @@ window.b2 = (function() {
 			density = (config.density === undefined) ? 1.0 : config.density,
 			friction = (config.friction === undefined) ? 0.1 : config.friction,
 			restitution = (config.restitution === undefined) ? 0.2 : config.restitution;
-			isSensor = (config.isSensor === undefined) ? false : config.isSensor;
+		isSensor = (config.isSensor === undefined) ? false : config.isSensor;
 
 		//构建刚体
 		var bodyDef = new b2BodyDef;
@@ -667,9 +667,16 @@ window.b2 = (function() {
 	// 镜头跟随（debug）
 	//+++++++++++++++++++++++++++++++++++
 	b2Utils._camera = {};
-	b2Utils._offset = {x:0,y:0};
-	b2Utils.cameraFollowUpdate = function(body) {
+	b2Utils._offset = {
+		x: 0,
+		y: 0
+	};
+	b2Utils.cameraFollowUpdate = function(body, gamePortWidth, gamePortHeight) {
 		b2Utils._camera.body = body;
+		if (gamePortWidth && gamePortHeight) {
+			b2Utils._camera.gamePortWidth = gamePortWidth;
+			b2Utils._camera.gamePortHeight = gamePortHeight;
+		}
 	}
 	b2Utils.cameraFollow = function(body, _config) {
 
@@ -679,7 +686,7 @@ window.b2 = (function() {
 		b2Utils._camera.debugCanvas = config.debugCanvas || document.getElementById("debug-canvas");
 		b2Utils._camera.debugCtx = b2Utils._camera.debugCanvas.getContext('2d');
 
-		b2Utils._camera.spaceH= config.spaceH || 100;
+		b2Utils._camera.spaceH = config.spaceH || 100;
 		b2Utils._camera.spaceW = config.spaceW || 100;
 		b2Utils._camera.x = config.x || 0;
 		b2Utils._camera.y = config.y || 0;
@@ -703,7 +710,6 @@ window.b2 = (function() {
 	b2Utils.watchCamera = function() {
 
 		(function(camera) {
-
 			cbody_y = camera.body.GetPosition().y * SCALE;
 			clocal_y = cbody_y - camera.y;
 

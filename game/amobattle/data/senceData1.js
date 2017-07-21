@@ -422,49 +422,49 @@ KISSY.add('data/senceData1', function(S) {
 		w: 20,
 		h: 30,
 		dir: 'down',
-		type: 'd'
+		type: 's'
 	}, {
 		x: 1050,
 		y: 0,
 		w: 20,
 		h: 30,
 		dir: 'down',
-		type: 'd'
+		type: 's'
 	}, {
 		x: 1000,
 		y: 0,
 		w: 20,
 		h: 30,
 		dir: 'down',
-		type: 'd'
+		type: 's'
 	}, {
 		x: 950,
 		y: 0,
 		w: 20,
 		h: 30,
 		dir: 'down',
-		type: 'd'
+		type: 's'
 	}, {
 		x: 900,
 		y: 0,
 		w: 20,
 		h: 30,
 		dir: 'down',
-		type: 'd'
+		type: 's'
 	}, {
 		x: 850,
 		y: 0,
 		w: 20,
 		h: 30,
 		dir: 'down',
-		type: 'd'
+		type: 's'
 	}, {
 		x: 800,
 		y: 0,
 		w: 20,
 		h: 30,
 		dir: 'down',
-		type: 'd'
+		type: 's'
 	}
 	]
 
@@ -609,13 +609,19 @@ KISSY.add('data/senceData1', function(S) {
 	var path = [];
 
 	var data = {
+		gamePortWidth: 1200,
+		gamePortHeight: 800,
 		barriers: barriers,
 		throns: throns,
 		golds: golds,
 		path: path,
 		windmill: windmill,
 		seesaw: seesaw,
-		targetScore: golds.length
+		targetScore: golds.length,
+		billd: {
+			x: 50,
+			y: 750
+		}
 		//targetScore: 1
 	};
 

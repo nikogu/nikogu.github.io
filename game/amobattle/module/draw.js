@@ -53,12 +53,18 @@ KISSY.add('module/draw', function(S) {
 			deg = config.deg || 0,
 			type = config.type || 'd',
 			scale = config.scale || 30,
-			radius = radius;
+			radius = radius,
+			dir = config.dir || false;
 
 		var o = {};
 		o.sprite = new createjs.Shape();
 		o.sprite.graphics.setStrokeStyle(strokeWidth, 'round').beginStroke(strokeColor)
 			.beginFill(color).drawCircle(0, 0, radius);
+
+		if ( dir ) {
+			o.sprite.graphics.beginStroke('#f1f1f1').moveTo(0, -radius).lineTo(0, radius).
+			moveTo(-radius, 0).lineTo(radius, 0);
+		}
 
 		o.sprite.x = x;
 		o.sprite.y = y;

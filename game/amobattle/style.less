@@ -5,6 +5,13 @@
     -ms-transition: all 2s ease;
     transition: all 2s ease;   
 }
+.transition-t(@t) {
+   -moz-transition: all @t ease;
+    -webkit-transition: all @t ease;
+    -o-transition: all @t ease;
+    -ms-transition: all @t ease;
+    transition: all @t ease;   
+}
 
 @font-face {
    font-family: 'Revalia';
@@ -32,20 +39,42 @@ h1, canvas {
 #debug-canvas {
    display: none;
 }
+
 #tips {
-   color: #999999;
+   color: #454545;
    font-family: 'tahoma';
    display: block;
    position: absolute;
-   top: 505px;
+   top: 437px;
    left: 50%;
    margin-left: -400px;
+   font-size: 11px;
    width: 800px;
    height: 20px;
    line-height: 20px;
    text-align: center;
+   em {
+      color: #c10000;
+      font-style: normal;
+   }
+}
+#content {
+   display: block;
+   overflow: hidden;
+   position: absolute;
+   top: 0;
+   left: 50%;
+   margin-left: -400px;
+   width: 801px;
+   height: 501px;  
+}
+#loading-num {
+   color: #ae113d;
+   font-size: 30px;
+   text-align: center;
 }
 
+//box
 #loading-box {
    background-color: #006ac1;
    color: #ffffff;
@@ -83,38 +112,6 @@ h1, canvas {
       }
    }
 }
-
-#loading-num {
-   color: #ae113d;
-   font-size: 30px;
-   text-align: center;
-}
-
-#btn-start {
-   background-color: #78ba00;
-   border: 2px solid #004a00;
-   border-radius: 10px;
-   cursor: pointer;
-   color: #ffffff;
-   display: none;
-   position: absolute;
-   bottom: 20px;
-   left: 50%;
-   margin-left: -60px;
-   height: 40px;
-   line-height: 40px;
-   width: 120px;
-   text-align: center;
-   -webkit-transition: all 0.5 swing;
-   transition: all 0.5 swing;
-   &:hover {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-   }
-   &:active, &:focus {
-      bottom: 19px; 
-   }
-}
-
 #over-box {
    .transition();
    background-color: rgba(50, 50, 50, 0.4);
@@ -131,31 +128,13 @@ h1, canvas {
       margin-top: 150px;
       text-align: center;
    }
+   p {
+      font-family: 'tahoma';
+      font-weight: bold;
+      color: #ffffff;
+      padding: 0 150px;
+   }
 }
-.btn-restart {
-   background-color: #ff7d23;
-   border: 2px solid #e56c19;
-   border-radius: 10px;
-   cursor: pointer;
-   color: #ffffff;
-   display: block;
-   position: absolute;
-   bottom: 200px;
-   left: 50%;
-   margin-left: -60px;
-   height: 40px;
-   line-height: 40px;
-   width: 120px;
-   text-align: center;
-   &:hover {
-      background-color: #ff2e12;
-      border: 2px solid #b01e00;
-   }
-   &:active, &:focus {
-      bottom: 199px;
-   }
-} 
-
 #success-box {
    .transition();
    background-color: rgba(50, 50, 50, 0.4);
@@ -185,4 +164,182 @@ h1, canvas {
          bottom: 99px;
       }
    }
+}
+#success-over-box {
+   .transition();
+   background-color: rgba(50, 50, 50, 0.4);
+   color: #ffffff;
+   display: block;
+   font-family: 'Revalia';
+   position: absolute;
+   top: -500px;
+   left: 50%;
+   margin-left: -400px;
+   width: 800px;
+   height: 500px;  
+   h1 {
+      color: #ff2e12;
+      margin-top: 150px;
+      text-align: center;
+   }  
+   p {
+      font-family: 'tahoma';
+      font-weight: bold;
+      color: #ffffff;
+      padding: 0 150px;
+   }
+   .btn-restart {
+      bottom: 100px;
+      &:active, &:focus {
+         bottom: 99px;
+      }
+   }
+}
+.level-content {
+   .transition();
+   background-color: #ffffff;
+   color: #454545;
+   display: block;
+   font-family: 'tahoma';
+   overflow: hidden;
+   position: absolute;
+   top: 500px;
+   left: 50%;
+   margin-left: -400px;
+   width: 802px;
+   height: 502px;     
+   .billd {
+      .transition-t(1s);
+      position: absolute;
+      //left: 0px;
+      left: -120px;
+      bottom: 150px;
+   }
+   .talk {
+      .transition-t(1s);
+      position: absolute;
+      left: 200px;
+      bottom: 150px;
+      opacity: 0;
+      //bottom: 100px;
+      p {
+         width: 360px; 
+      }
+   }
+}
+
+//button
+#btn-start {
+   background-color: #78ba00;
+   border: 2px solid #004a00;
+   border-radius: 10px;
+   cursor: pointer;
+   color: #ffffff;
+   display: none;
+   position: absolute;
+   bottom: 60px;
+   left: 50%;
+   margin-left: -60px;
+   height: 40px;
+   line-height: 40px;
+   width: 120px;
+   text-align: center;
+   -webkit-transition: all 0.5 swing;
+   transition: all 0.5 swing;
+   &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+   }
+   &:active, &:focus {
+      bottom: 59px; 
+   }
+}
+.btn-restart {
+   background-color: #ff7d23;
+   border: 2px solid #e56c19;
+   border-radius: 10px;
+   cursor: pointer;
+   color: #ffffff;
+   display: block;
+   position: absolute;
+   bottom: 150px;
+   left: 50%;
+   margin-left: -60px;
+   height: 40px;
+   line-height: 40px;
+   width: 120px;
+   text-align: center;
+   &:hover {
+      background-color: #ff2e12;
+      border: 2px solid #b01e00;
+   }
+   &:active, &:focus {
+      bottom: 149px;
+   }
+} 
+.btn-level {
+   background-color: #006ac1;
+   border: 1px solid #1b5888;
+   border-radius: 10px;
+   cursor: pointer;
+   color: #ffffff;
+   display: block;
+   font-family: 'Revalia';
+   position: absolute;
+   right: 40px;
+   bottom: 50px;
+   height: 40px;
+   line-height: 40px;
+   width: 120px;
+   text-align: center;
+   &:hover {
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      opacity: 0.9
+   }
+   &:active, &:focus {
+      bottom: 49px;
+   }  
+}
+.btn-next {
+   background-color: #00c1f3;
+   border: 2px solid #006ac1;
+   border-radius: 10px;
+   cursor: pointer;
+   color: #ffffff;
+   display: block;
+   position: absolute;
+   bottom: 130px;
+   left: 50%;
+   margin-left: -60px;
+   height: 40px;
+   line-height: 40px;
+   width: 120px;
+   text-align: center;
+   &:hover {
+      background-color: #56c5ff;
+   }
+   &:active, &:focus {
+      bottom: 129px;
+   }  
+}
+.btn-to-begin {
+   background-color: #00c1f3;
+   border: 2px solid #006ac1;
+   border-radius: 10px;
+   cursor: pointer;
+   color: #ffffff;
+   display: block;
+   position: absolute;
+   bottom: 40px;
+   left: 50%;
+   margin-left: -60px;
+   height: 40px;
+   line-height: 40px;
+   width: 120px;
+   text-align: center;
+   &:hover {
+      background-color: #56c5ff;
+   }
+   &:active, &:focus {
+      bottom: 39px;
+   }     
 }

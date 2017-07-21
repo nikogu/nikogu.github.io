@@ -5,7 +5,7 @@
  * @author yujiang<zhihao.gzh@alibaba-inc.com>
  * @data 2014-03-23
  */
-KISSY.add('module/scene', function(S, Draw, Gold, Thorn, Windmill, Seesaw) {
+KISSY.add('module/scene', function(S, Draw, Gold, Thorn, Windmill, Seesaw, CrashBall) {
 
 	//Barrier
 	function Barrier(stage) {
@@ -22,7 +22,7 @@ KISSY.add('module/scene', function(S, Draw, Gold, Thorn, Windmill, Seesaw) {
 	}
 	Barrier.prototype.clear = function() {
 		this.barriers.forEach(bind(function(barrier) {
-			this.stage.removeChild(barrier);
+			this.stage.removeChild(barrier.sprite);
 		}, this));
 		this.bodys.forEach(function(body) {
 			b2.world.DestroyBody(body);
@@ -71,6 +71,13 @@ KISSY.add('module/scene', function(S, Draw, Gold, Thorn, Windmill, Seesaw) {
 			stage: this.stage,
 			scale: this.scale
 		});
+
+		this.ballManager = new CrashBall({
+			stage: this.stage,
+			billd: this.billd,
+			scale: this.scale,
+			ballCrashFunc: this.ballCrashFunc
+		});
 	}
 	Scene.prototype.addBound = function(_w, _h, _ply, _config) {
 		this.bound = new createjs.Shape();
@@ -84,12 +91,14 @@ KISSY.add('module/scene', function(S, Draw, Gold, Thorn, Windmill, Seesaw) {
 		this.stage.removeChild(this.bound);
 	}
 	Scene.prototype.makePath = function(path, _config) {
-		this.paths.push(Draw.drawPath(path, this.stage, _config));
+		if ( path.length > 0 ) {
+			this.paths.push(Draw.drawPath(path, this.stage, _config));
+		}
 	}
 	Scene.prototype.clearPath = function() {
 		this.paths.forEach(bind(function(path) {
 			b2.world.DestroyBody(path.body);
-			stage.removeChild(path);
+			this.stage.removeChild(path);
 		},this));
 	}
 	Scene.prototype.makeBarriers = function(arr) {
@@ -125,18 +134,42 @@ KISSY.add('module/scene', function(S, Draw, Gold, Thorn, Windmill, Seesaw) {
 		this.goldManager.update();
 		this.windmillManager.update();
 		this.seesawManager.update();
+		this.ballManager.update();
 	}
 
 	//根据数据创建场景
 	Scene.prototype.build = function(data) {
-		if ( data.path.length > 0 ) {
-			this.makePath(data.path);
+		if ( !data.path ) {
+			data.path = [];
 		}
+		if ( !data.barriers ) {
+			data.barriers = [];
+		}
+		if ( !data.golds ) {
+			data.golds = [];
+		}
+		if ( !data.throns ) {
+			data.throns = [];
+		}
+		if ( !data.windmill ) {
+			data.windmill = [];
+		}
+		if ( !data.seesaw ) {
+			data.seesaw = [];
+		}
+		if ( !data.crashBall ) {
+			data.crashBall = [];
+		}
+
+		this.makePath(data.path, {
+			color: '#00c13f'
+		});
 		this.makeBarriers(data.barriers);
 		this.goldManager.makeGolds(data.golds);
 		this.thronManager.makeThorns(data.throns);
 		this.windmillManager.makeWindmill(data.windmill);
 		this.seesawManager.makeSeesaw(data.seesaw);
+		this.ballManager.addPos(data.crashBall);
 	}
 	Scene.prototype.clear = function() {
 		this.clearPath();
@@ -146,10 +179,11 @@ KISSY.add('module/scene', function(S, Draw, Gold, Thorn, Windmill, Seesaw) {
 		this.windmillManager.clear();
 		this.goldManager.clear();
 		this.seesawManager.clear();
+		this.ballManager.clear();
 	}
 
 	return Scene;
 
 }, {
-	requires: ['module/draw', 'module/gold', 'module/thorn', 'module/windmill', 'module/seesaw']
+	requires: ['module/draw', 'module/gold', 'module/thorn', 'module/windmill', 'module/seesaw', 'module/crash-ball']
 });

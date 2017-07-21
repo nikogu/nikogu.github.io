@@ -24,7 +24,7 @@ KISSY.add('module/billd', function(S) {
 		this.status = 'static';
 		this.statusLeft = false;
 		this.statusRight = false;
-		this.jumping = true;
+		this.jumping = false;
 		this.dead = false;
 		this.stop = false;
 		//this.init();
@@ -145,6 +145,7 @@ KISSY.add('module/billd', function(S) {
 					break;
 					//上
 				case 38:
+				case 32:
 					if (!this.jumping) {
 						createjs.Sound.play('m-jump');
 						this.jumping = true;
@@ -178,6 +179,7 @@ KISSY.add('module/billd', function(S) {
 					break;
 					//上
 				case 38:
+				case 32:
 					break;
 				default:
 					break;

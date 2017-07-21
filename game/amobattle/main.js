@@ -45,7 +45,8 @@ var loader,
 //+++++++++++++++++++++++++++++
 //游戏入口
 //+++++++++++++++++++++++++++++
-KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, SenceData1) {
+KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, CrashBall, Animation,
+	SenceData1, senceData2, senceData3) {
 
 	var $ = Node.all;
 
@@ -53,16 +54,20 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 	// 初始加载
 	//++++++++++++++++++++++++++++++++++++
 	var loadingNum = document.getElementById('loading-num'),
-		startBtn = document.getElementById('btn-start'),
+		startBtn = $('#btn-start'),
 		loadingBox = document.getElementById('loading-box'),
 		overBox = document.getElementById('over-box'),
-		restartBtn = $('.btn-restart'),
 		successBox = document.getElementById('success-box'),
+		successOverBox = document.getElementById('success-over-box'),
+		levelBtn = $('.btn-level'),
+		restartBtn = $('.btn-restart'),
+		nextBtn = $('.btn-next'),
+		beginBtn = $('.btn-to-begin'),
 		tips = $('#tips'),
 		count = 0,
-		isOver = false,
-		isStart = false,
-		isClear = false;
+		gameStatus = 'init',
+		level = 1,
+		isPASSALL = false;
 
 	var timmer = setInterval(function() {
 
@@ -98,6 +103,9 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 		}, {
 			src: "res/billd.png",
 			id: "billd"
+		}, {
+			src: "res/billd-anim.gif",
+			id: "billd-anim"
 		}];
 		loader = new createjs.LoadQueue();
 		createjs.Sound.alternateExtensions = ['mp3', 'wav', 'ogg'];
@@ -139,31 +147,47 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 		loader.on("complete", function() {
 			clearInterval(timmer);
 			loadingNum.innerHTML = '100%';
-			startBtn.style.display = 'block';
+			startBtn.css('display', 'block');
 
 			function start() {
-				if (isStart) {
-					return;
+				if (gameStatus == 'init') {
+					gameStatus = 'ingame';
+					loadingBox.style.top = '-500px';
+					overBox.style.top = '-500px';
+					createjs.Sound.play('m-click');
+					tips.hide();
+					init();
 				}
-				isStart = true;
-				isOver = false;
-				loadingBox.style.top = '-500px';
-				overBox.style.top = '-500px';
-				createjs.Sound.play('m-click');
-				tips.hide();
-				init();
 			}
 
-			window.addEventListener('keydown', function(e) {
-				if (e.keyCode == 13) {
-					start();
+			$(window).on('keydown', function(e) {
+				if (e.keyCode == 13 || e.keyCode == 32) {
+					if (gameStatus == 'init') {
+						startBtn.fire('click');
+					} else if (gameStatus == 'over') {
+						restartBtn.fire('click');
+					} else if (gameStatus == 'win') {
+						nextBtn.fire('click');
+					} else if (gameStatus == 'stop') {
+						levelBtn.fire('click');
+					} else if (gameStatus == 'pass-all') {
+						beginBtn.fire('click');
+					}
 				}
 			});
-			startBtn.addEventListener('click', function() {
+
+			//游戏开始按钮
+			startBtn.on('click', function() {
 				start();
 			});
 
-			//init();
+			//片头动画按钮
+			levelBtn.on('click', function() {
+				$('#level-' + level).css('top', '500px');
+				createjs.Sound.play('m-click');
+				gameStatus = 'ingame';
+			});
+
 		});
 	}
 
@@ -182,23 +206,19 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 			gamePortHeight = 800;
 
 		var stage = new createjs.Stage('canvas');
-		//stage.enableMouseOver(20);
 
 		var bg = new createjs.Bitmap(loader.getResult('bg'));
-		var bgBound = bg.getBounds();
-		if (bgBound) {
-			bg.cache(bgBound.x, bgBound.y, bgBound.width, bgBound.height);
-		} else {
-			bg.cache(0, 0, gamePortWidth, gamePortHeight);
-		}
 		stage.addChild(bg);
+		//缓存背景
+		bg.cache(0, 0, 1900, 1397);
+
 
 		//+++++++++++++++++++++++++++++++++++
 		//具体代码开始
 		//+++++++++++++++++++++++++++++++++++
-		//b2.b2Utils.setDrag(true, debugCanvas);
 
-		var mapData = SenceData1;
+		var DATA = [SenceData1, senceData2, senceData3],
+			totalLevel = DATA.length;
 
 		//主角
 		var billd,
@@ -206,15 +226,23 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 			scene,
 			update;
 
-		function createGame(mapData) {
+		function createGame(DATA) {
 
-			isClear = false;
+			//获取数据
+			var mapData = DATA[(level - 1)];
+
+			gameStatus = 'stop';
+
+			//重置窗口大小
+			gamePortWidth = mapData.gamePortWidth;
+			gamePortHeight = mapData.gamePortHeight;
+
 			createjs.Sound.play('m-bg', {
 				loop: -1
 			});
 
 			//主角
-			billd = new Billd(50, 750, stage);
+			billd = new Billd(mapData.billd.x, mapData.billd.y, stage);
 
 			//得分显示处理器
 			scoreText = new UIText({
@@ -249,6 +277,12 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 						x: b2.b2Utils._offset.x,
 						y: b2.b2Utils._offset.y
 					}
+				},
+				ballCrashFunc: function() {
+					this.billd.dead = true;
+					if (gameStatus == 'ingame') {
+						over();
+					}
 				}
 			});
 			//场景初始化
@@ -270,17 +304,20 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 			//碰撞检测钉刺
 			b2.b2Utils.contactWith(billd.body, scene.getThronBodys(), function(billdBody, thronBody) {
 				billdBody.master.dead = true;
-				if (!isOver) {
+				if (gameStatus == 'ingame') {
 					over();
-					//overBox.style.top = '0';
 				}
 			});
 
-			b2.b2Utils.cameraFollowUpdate(billd.body);
+			b2.b2Utils.cameraFollowUpdate(billd.body, gamePortWidth, gamePortHeight);
+
+			//开头动画设置
+			Animation.active('level-' + level);
+
 		}
 
 		//构建游戏
-		createGame(mapData);
+		createGame(DATA);
 
 		b2.b2Utils.cameraFollow(billd.body, {
 			debugCanvas: document.getElementById("debug-canvas"),
@@ -294,6 +331,9 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 
 		//更新代码
 		function update() {
+			if (gameStatus == 'stop') {
+				return;
+			}
 			//b2.b2Utils.watchDrag();
 			scoreText.update();
 			b2.b2Utils.startContactListener();
@@ -306,7 +346,7 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 
 		//清理方法集合
 		function clear() {
-			isClear = true;
+			gameStatus == 'clear';
 			//update = null;
 			billd.clear();
 			scene.clear();
@@ -316,31 +356,59 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 
 		//游戏成功
 		function win() {
-			isOver = true;
-			createjs.Sound.stop('m-bg');
-			createjs.Sound.play('m-sucess');
-			successBox.style.top = '0';
-			billd.stop = true;
+			if (level < totalLevel) {
+				gameStatus = 'win';
+				createjs.Sound.stop('m-bg');
+				createjs.Sound.play('m-sucess');
+				successBox.style.top = '0';
+				billd.stop = true;
+			} else {
+				gameStatus = 'pass-all';
+				createjs.Sound.stop('m-bg');
+				createjs.Sound.play('m-sucess');
+				successOverBox.style.top = '0';
+				billd.stop = true;
+			}
 		}
 
 		//游戏结束
 		function over() {
-			isOver = true;
+			gameStatus = 'over';
 			overBox.style.top = '0';
 			createjs.Sound.stop('m-bg');
 			createjs.Sound.play('m-crash');
 			createjs.Sound.play('m-over');
 		}
+
+		//重新开始
 		restartBtn.on('click', function() {
-			if (!isOver) {
-				return;
+			if (gameStatus == 'over') {
+				loadingBox.style.top = '-500px';
+				overBox.style.top = '-500px';
+				successBox.style.top = '-500px';
+				clear();
+				createGame(DATA);
 			}
-			isOver = false;
-			loadingBox.style.top = '-500px';
-			overBox.style.top = '-500px';
-			successBox.style.top = '-500px';
-			clear();
-			createGame(mapData);
+		});
+
+		//下一关
+		nextBtn.on('click', function() {
+			if (gameStatus == 'win') {
+				successBox.style.top = '-500px';
+				level++;
+				clear();
+				createGame(DATA);
+			}
+		});
+
+		//初始化
+		beginBtn.on('click', function() {
+			if (gameStatus == 'pass-all') {
+				successOverBox.style.top = '-500px';
+				level = 1;
+				clear();
+				createGame(DATA);
+			}
 		});
 
 		//网格
@@ -361,7 +429,7 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 		//循环方法
 		function tick() {
 
-			if (isClear) {
+			if (gameStatus == 'clear' || gameStatus == 'stop') {
 				return;
 			}
 
@@ -381,7 +449,7 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 		}
 
 		//设置绘图
-		createjs.Ticker.addEventListener("tick", tick);
+		createjs.Ticker.addEventListener('tick', tick);
 		createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
 		createjs.Ticker.setInterval(60);
 		createjs.Ticker.setFPS(60);
@@ -390,8 +458,8 @@ KISSY.add('main', function(S, Node, Billd, Draw, Scene, Gold, UIText, Thorn, Sen
 
 }, {
 	requires: ['node',
-		'module/billd', 'module/draw', 'module/scene', 'module/gold', 'module/uitext', 'module/thorn',
-		'data/senceData1'
+		'module/billd', 'module/draw', 'module/scene', 'module/gold', 'module/uitext', 'module/thorn', 'module/crash-ball', 'module/animation',
+		'data/senceData1', 'data/senceData2', 'data/senceData3'
 	]
 });
 KISSY.use('main');

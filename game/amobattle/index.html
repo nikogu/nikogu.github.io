@@ -1,16 +1,17 @@
 <!doctype html>
 <html>
 <head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-   <meta name="apple-mobile-web-app-capable" content="yes">
-   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-   <meta name="format-detection" content="telephone=no">
-   <meta name="twcClient" content="false" id="twcClient">
-   <link rel="stylesheet" type="text/css" href="./style.css">
-	<title>Billd's Battle</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="twcClient" content="false" id="twcClient">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Billd's Battle</title>
 </head>
-<!--
+<body>
+    <!--
        `;!|%$$$$$$$$$$$$$$$$%%%%$$$$$%%%$$$$%;.    `
       `;!|%$$$$$%%$$$$$$$$$$$$%%%$$&$$%%$$$$$%;.   `
      `;!!%$$%%%%%%$&$$$$$$$%%||!!|%$$$$%$$$&$$%:   `
@@ -48,33 +49,97 @@ $$$&&&&$$&&&&&&&&!`...```````:|&&&&&&&&&&&&@@&&$%!;;
 $$$&&&&&&&&&&&&&&!`..````````:%&&&&&&&&&&&&@&&$%!;::
 $$$&&&&&&&&&&&$$%;`..````````:%&&&&&&&&&&&@&&$%|;:':
 -->
-   <canvas id="canvas" width="800" height="500"></canvas>
-   <canvas id="debug-canvas" width="800" height="500"></canvas>
-   <div id="loading-box">
-      <h1>- Billd Battle -<b>By Niko</b></h1>
-      <p>主角Billd的好朋友Bunny被奇怪的东西绑架了，Billd无法忍受寂寞孤独的日子，决定去营救他的小伙伴，所以他需要通过重重奇怪的关卡，<em>只有收集全部的金币才能过关</em>，而你就是指引它的那个人，加油！(小提示:Billd具有贴着东西运动的技能)</p>
-      <p>The Bunny who is the leading role Billd's friend was take away by something strange, Bunny can't leaving without Bunny, so he decided to save Bunny by through many of obstacle,<em>collected all of golds that you can go on</em>. You are the guy who guide Bunny to Battle, Good Luck!(Tips:Billd can climb a wall)</p>
-      <div id="loading-num">0%</div>
-      <span id="btn-start">START</span>
-   </div>
-   <div id="over-box">
-      <h1>GAME OVER</h1>
-      <span class="btn-restart">RESTART</span>
-   </div>
-   <!-- 哎呦，被你发现写死了，你妹 -->
-   <div id="success-box">
-      <h1>YOU WIN!!!</h1>
-      <p>beta0.1版被你玩翻啦(你是第23位玩翻的小伙伴！)！下一关敬请期待！</p>
-      <p>You alreay through the first pass! The next is under work...</p>
-      <span class="btn-restart">RESTART</span>
-   </div>
-   <p id="tips">Please use chrome, otherwise the sound or picture will broken! <br>If Your internet speed is slow, you will lose some resource!</p>
-   <script type="text/javascript" src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js"></script>
-   <script type="text/javascript" src="./lib/webfont.js"></script>
-	<script type="text/javascript" src="./lib/preload.js"></script>
-   <script type="text/javascript" src="./lib/sound.js"></script>
-	<script type="text/javascript" src="./lib/easeljs.js"></script>
-	<script type="text/javascript" src="./lib/Box2dWeb-2.1.a.3.min.js"></script>
-	<script type="text/javascript" src="./lib/box2d-utils.js"></script>
-   <script type="text/javascript" src="./main.js"></script>
+    <canvas id="canvas" width="800" height="500"></canvas>
+    <canvas id="debug-canvas" width="800" height="500"></canvas>
+    <div id="content">
+        <div id="loading-box">
+            <h1>
+                - Billd Battle - <b>By Niko</b>
+            </h1>
+            <p>
+                主角Billd的好朋友amo被奇怪的东西绑架了，Billd无法忍受寂寞孤独的日子，决定去营救他的小伙伴，所以他需要通过重重奇怪的关卡， <em>只有收集全部的金币才能过关</em>
+                ，而你就是指引它的那个人，加油！(小提示:Billd具有贴着东西运动的技能)
+            </p>
+            <p>
+                The amo who is the leading role Billd's friend was take away by something strange, Billd can't leaving without amo, so he decided to save amo by through many of obstacle, <em>collected all of golds that you can go on</em>
+                . You are the guy who guide amo to Battle, Good Luck!(Tips:Billd can climb a wall)
+            </p>
+            <div id="loading-num">0%</div>
+            <span id="btn-start">START</span>
+        </div>
+        <!-- 看源码的意义何在，你已经失去了这个游戏的意义... -->
+        <div id="over-box">
+            <h1>GAME OVER</h1>
+            <p>不要放弃，amo在等你</p>
+            <p>Do not give up, amo is waiting for you.</p>
+            <span class="btn-restart">RESTART</span>
+        </div>
+        <div id="success-box">
+            <h1>YOU WIN!!!</h1>
+            <p>太好了！你通过了这一关，继续吧！amo在等你！</p>
+            <p>Great! You through this pass! Be quick, amo is waiting for you.</p>
+            <span class="btn-next">NEXT</span>
+        </div>
+        <div id="success-over-box">
+            <h1>YOU ARE THROUGH ALL PASS</h1>
+            <p>你已经通关了...直到这个时候Billd才知道原来amo其实根本不存在，是自己由于孤单想象出来的朋友！而此刻，Billd已经醒悟，它要勇敢地找寻自己生命真正的意义！</p>
+            <p>You through all pass! Utill now, Billd know that amo is not exist, all of this is because loneliness!But, Billd is wake up, he decide to find the true meaning of life.</p>
+            <p>Oh, Billd thank you.Hope you will find the he/she who is your life's meaning. - niko</p>
+            <span class="btn-to-begin">RETRY</span>
+        </div>
+        <p id="tips">
+            <em>Please use chrome</em>, otherwise the sound or picture will broken!
+            <br>If Your internet speed is slow, you will lose some resource!</p>
+        <div id="level-1" class="level-content">
+            <img class="billd" src="./res/billd-anim.gif">
+            <div class="talk">
+                <h1>LEVEL 1</h1>
+                <p>
+                    我们需要躲过尖刺并且收集所有金币才能通过，我具有贴着东西运动的技能，别忘了哦！
+                </p>
+                <p>
+                    We can through this pass by dodge the thron & collect all of golds, i can climb the wall, do'not forget it!
+                </p>
+            </div>
+            <span class="btn-level">GO→</span>
+        </div>
+        <div id="level-2" class="level-content">
+            <img class="billd" src="./res/billd-anim.gif">
+            <div class="talk">
+                <h1>LEVEL 2</h1>
+                <p>
+                    我们需要躲过掉的小球并且收集所有的金币，出发吧！amo在等我们！
+                </p>
+                <p>
+                    We need elude the crashed ball & collect all of golds, let's go, amo is waiting for you!
+                </p>
+            </div>
+            <span class="btn-level">GO→</span>
+        </div>
+        <div id="level-3" class="level-content">
+            <img class="billd" src="./res/billd-anim.gif">
+            <div class="talk">
+                <h1>LEVEL 3</h1>
+                <p>
+                    小心独木桥！
+                </p>
+                <p>
+                    Single-plank bridge!
+                </p>
+            </div>
+            <span class="btn-level">GO→</span>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js"></script>
+    <script type="text/javascript" src="./lib/webfont.js"></script>
+    <script type="text/javascript" src="./lib/preload.js"></script>
+    <script type="text/javascript" src="./lib/sound.js"></script>
+    <script type="text/javascript" src="./lib/easeljs.js"></script>
+    <script type="text/javascript" src="./lib/tweenjs.js"></script>
+    <script type="text/javascript" src="./lib/css-plugin.js"></script>
+    <script type="text/javascript" src="./lib/Box2dWeb-2.1.a.3.min.js"></script>
+    <script type="text/javascript" src="./lib/box2d-utils.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
+</body>
 </html>
