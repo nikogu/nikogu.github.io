@@ -1,4 +1,5 @@
 demo/elevator/.idea
+.DS_Store
 
 tmp/
 temp/

@@ -43,7 +43,7 @@
             article = slide.find('.article'),
             nextNode = slide.find('.next');
 
-        $('#J_time-1').typeTo('2015.11.28');
+        $('#J_time-1').typeTo('20xx.xx.xx');
 
         var t = 2000,
             duration = 1000,
