@@ -779,6 +779,7 @@ var Car = function(config) {
 
       cars.push(newCar);
 
+      alert('添加成功');
     } catch(e) {
       throw new Error(e);
       alert('不要瞎几把乱搞');
