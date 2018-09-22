@@ -1,0 +1,33 @@
+body {
+  position: relative;
+  margin: 10px;
+}
+.car {
+  border: 1px solid #cacaca;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7.5px;
+  height: 2px;
+}
+.car span {
+  white-space: nowrap;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  font-size: 13px;
+}
+.line {
+  background: #ddd;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+}
+#btn {
+  color: rgba(57, 136, 255, 0.568);
+  cursor: pointer;
+  font-size: 20px;
+}
