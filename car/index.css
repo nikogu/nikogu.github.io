@@ -23,6 +23,7 @@ body {
   left: 10px;
   font-size: 13px;
   white-space: nowrap;
+  margin-bottom: 20px;
 }
 .car em {
   padding-right: 10px;
