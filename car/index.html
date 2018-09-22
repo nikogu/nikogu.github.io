@@ -2,35 +2,83 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
   <title>Car Simulation</title>
   <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
+  <span id="info"><< 横向滚动 >></span>
   <h3 style="padding:0px; margin:0;">
     0 - 400 M Race ----- 
-    <a id="btn">GO</a>
   </h3>
+    <form id="form">
+      <p>自定义车辆 - 车辆会添加在下方</p>
+      <label>名称</label>
+      <input required placeholder="" name="name" /><br>
+
+      <label>车重(kg)</label>
+      <input required placeholder="1500" type="number" name="weight" /><br>
+
+      <label>马力(hps)</label>
+      <input required placeholder="300" type="number" name="power" /><br>
+
+      <label>最大功率转速(maxrpm)</label>
+      <input required placeholder="6000" type="number" name="maxrpm" /><br>
+
+      <label>扭矩(Nm)</label>
+      <input required placeholder="300" type="number" name="torque" /><br>
+
+      <label>轮胎数据</label>
+      <input required placeholder="245/35/19" name="tire" /><br>
+
+      <label>档位个数</label>
+      <input required placeholder="6" type="number" name="gears" /><br>
+
+      <label>自动/手动</label>
+      <select name="geartype">
+        <option value="1">手动</option> 
+        <option value="2">普通自动</option> 
+        <option value="3">DSG 双离合</option> 
+        <option value="4">DCT 双离合</option> 
+        <option value="5">PDK</option> 
+      </select><br>
+      <div style="height: 50px;">
+        <button id="add" type="submit">添加车辆</button>
+        <a id="btn">GO</a>
+      </div>
+    </form>
+  <div id="container">
   <div class="line" style="width: 800px; top: 30px;"></div>
   <div id="bmw_m2" class="car" style="background: rgba(25, 171, 255, 0.664); top: 50px;">
     <span>BMW M2</span>
+    <em></em>
   </div>
   <div id="focus_st" class="car" style="background: yellow; top: 100px;">
     <span>FOCUS ST</span>
+    <em></em>
   </div>
   <div id="focus_rs" class="car" style="background: rgb(21, 10, 175); top:150px;">
     <span>FOCUS RS</span>
+    <em></em>
   </div>
   <div id="audi_rs3" class="car" style="background: black; top: 200px;">
     <span>AUDI RS3</span>
+    <em></em>
   </div>
   <div id="benz_a45" class="car" style="background: white; top: 250px;">
     <span>BENZ A45</span>
+    <em></em>
   </div>
   <div id="ferrari_458" class="car" style="background: rgb(255, 38, 38); top: 300px;">
     <span>Ferrari 458</span>
+    <em></em>
+  </div>
+  <div id="mclaren_p1" class="car" style="background: green; top: 350px;">
+    <span>McLaren p1</span>
+    <em></em>
+  </div>
   </div>
   <script src="./index.js"></script>
 </body>
