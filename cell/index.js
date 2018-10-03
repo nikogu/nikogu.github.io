@@ -133,9 +133,15 @@ $(function() {
     };
   };
 
+  window.imgerror = function(self) {
+    self.src =
+      "https://gw.alipayobjects.com/zos/rmsportal/bhSthsKaAbkbWZDeFKmd.png";
+  };
+
   var Cell = function(config, index) {
     // cell
     var id = "cell" + index;
+
     var node =
       '<div class="cell-wrapper">' +
       '<div id="' +
@@ -143,7 +149,7 @@ $(function() {
       '" class="cell">' +
       '<img class="cell-img" src="' +
       config.image +
-      '"/>' +
+      '" onerror="window.imgerror(this)"/>' +
       '<div class="bg1 cell-bg" style="background-color: ' +
       config.color +
       ';"></div>' +
@@ -154,7 +160,7 @@ $(function() {
       config.name +
       '<img class="cell-icon" src="' +
       config.icon +
-      '"/>' +
+      '" onerror="window.imgerror(this)"/>' +
       "</div>" +
       '<div class="jpname">' +
       config.jpname +
