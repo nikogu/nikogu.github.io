@@ -123,6 +123,7 @@ body {
   height: 130px;
 }
 #footer {
+  opacity: 0;
   color: #b7b7b7;
   font-size: 12px;
   text-align: center;

@@ -208,6 +208,7 @@ $(function() {
   function onLoaded() {
     if (loaded) return;
     $("#root").css("opacity", 1);
+    $("#footer").css("opacity", 1);
     loading.hide();
     loaded = true;
     var cells = makeCell(cellData);
