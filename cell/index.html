@@ -2,23 +2,42 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <link rel="shortcut icon" href="https://gw.alipayobjects.com/zos/rmsportal/SSSWnwSDiwXntZGOfQdb.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
   <link rel="stylesheet" href="./reset.css">
   <link rel="stylesheet" href="./index.css">
-  <title>cell</title>
+  <title>ミクロの世界</title>
 </head>
 
 <body>
-  <h1 class="title">チェンの細胞</h1>
-  <div id="cell" class="cell">
-    <img id="cell-body" width="50" height="50" src="https://gw.alipayobjects.com/zos/rmsportal/xhEgWzQSpeenKMbhxKix.png" />
-    <div id="circle1" class="circle"></div>
-    <div id="circle2" class="circle"></div>
+  <div id="loading" class="lds-ripple">
+    <div></div><div></div>
+    <p>細胞が駆けている...</p>
   </div>
+  <div id="article">
+    <h1>ミクロの世界</h1>
+    <p class="en">
+      This is a book about the tiny world.
+      It exists in every corner of the earth I liked science very much and I had a children's microscope since I was young This book focuses on the wonderful world under microscope and uses cardboard to make three-dimensional effects.</p>
+    <p class="jp">
+      小さい時の好奇心から、細胞構造を顕微鏡でもっと見やすいために切片を染色して、
+      自分で作った標本切片を積載台において、
+      我々の世界に生々しく存在している細胞となります。
+      顕微鏡は目で見わけできない微小物を拡大します。
+      ミクロな世界はどんなに奇幻で美しいです。
+      顕微鏡で観察する必要な映像を理解やすい画像の符号に転換しました。
+      色の板紙を利用して３ｄの形で表現して、図鑑を作成しました。
+      子供の頃の小さな世界も保存しています。
+    </p>
+  </div>
+  <div id="root"></div>
+  <div id="footer">- Created By Chinnshiu &copy; 2018 -</div>
+  <div id="preload"></div>
   <!-- jquery -->
   <script src="https://gw.alipayobjects.com/os/rmsportal/XmqjRsauPbSgaImrEbqw.js"></script>
   <script src="./amo.js"></script>
+  <script src="./data.js"></script>
   <script src="./index.js"></script>
 </body>
 
